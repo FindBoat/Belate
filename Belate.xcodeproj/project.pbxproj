@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83722BA9BEA647838CB566A8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B336617B8DF44E22B9B09946 /* libPods.a */; };
 		FD0730D019762C540077463B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0730CF19762C540077463B /* Foundation.framework */; };
 		FD0730D219762C540077463B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0730D119762C540077463B /* CoreGraphics.framework */; };
 		FD0730D419762C540077463B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0730D319762C540077463B /* UIKit.framework */; };
@@ -40,6 +41,10 @@
 		FD4DBD3B197CA9B6004062AE /* BLUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4DBD3A197CA9B6004062AE /* BLUtility.m */; };
 		FD6600EA1981EB9500C9E678 /* BLHangoutListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6600E91981EB9500C9E678 /* BLHangoutListViewController.m */; };
 		FD6600ED1982201200C9E678 /* BLBlankHangoutListView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6600EC1982201200C9E678 /* BLBlankHangoutListView.m */; };
+		FD93B95919844E4200F94F4B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD93B95819844E4200F94F4B /* Social.framework */; };
+		FD93B95B19844E4800F94F4B /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD93B95A19844E4800F94F4B /* Accounts.framework */; };
+		FD93B9601984502800F94F4B /* FSVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93B95F1984502800F94F4B /* FSVenue.m */; };
+		FD93B963198450EE00F94F4B /* FSConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93B962198450EE00F94F4B /* FSConverter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B336617B8DF44E22B9B09946 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1B08A56402347338965B64A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		FD0730CC19762C540077463B /* Belate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Belate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD0730CF19762C540077463B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FD0730D119762C540077463B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -99,6 +106,12 @@
 		FD6600E91981EB9500C9E678 /* BLHangoutListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLHangoutListViewController.m; sourceTree = "<group>"; };
 		FD6600EB1982201200C9E678 /* BLBlankHangoutListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLBlankHangoutListView.h; sourceTree = "<group>"; };
 		FD6600EC1982201200C9E678 /* BLBlankHangoutListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLBlankHangoutListView.m; sourceTree = "<group>"; };
+		FD93B95819844E4200F94F4B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		FD93B95A19844E4800F94F4B /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		FD93B95E1984502800F94F4B /* FSVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSVenue.h; sourceTree = "<group>"; };
+		FD93B95F1984502800F94F4B /* FSVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSVenue.m; sourceTree = "<group>"; };
+		FD93B961198450EE00F94F4B /* FSConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSConverter.h; sourceTree = "<group>"; };
+		FD93B962198450EE00F94F4B /* FSConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSConverter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +119,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD93B95B19844E4800F94F4B /* Accounts.framework in Frameworks */,
+				FD93B95919844E4200F94F4B /* Social.framework in Frameworks */,
 				FD07310B19762CF10077463B /* QuartzCore.framework in Frameworks */,
 				FD07311119762D030077463B /* SystemConfiguration.framework in Frameworks */,
 				FD07310F19762CFD0077463B /* StoreKit.framework in Frameworks */,
@@ -120,6 +135,7 @@
 				FD0730FF19762C800077463B /* Parse.framework in Frameworks */,
 				FD0730D019762C540077463B /* Foundation.framework in Frameworks */,
 				FD07311319762F960077463B /* FacebookSDK.framework in Frameworks */,
+				83722BA9BEA647838CB566A8 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +159,7 @@
 				FD0730EE19762C540077463B /* BelateTests */,
 				FD0730CE19762C540077463B /* Frameworks */,
 				FD0730CD19762C540077463B /* Products */,
+				E1B08A56402347338965B64A /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,6 +175,8 @@
 		FD0730CE19762C540077463B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FD93B95A19844E4800F94F4B /* Accounts.framework */,
+				FD93B95819844E4200F94F4B /* Social.framework */,
 				FD07311219762F960077463B /* FacebookSDK.framework */,
 				FD07311019762D030077463B /* SystemConfiguration.framework */,
 				FD07310E19762CFD0077463B /* StoreKit.framework */,
@@ -173,6 +192,7 @@
 				FD0730D119762C540077463B /* CoreGraphics.framework */,
 				FD0730D319762C540077463B /* UIKit.framework */,
 				FD0730E819762C540077463B /* XCTest.framework */,
+				B336617B8DF44E22B9B09946 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -180,6 +200,7 @@
 		FD0730D519762C540077463B /* Belate */ = {
 			isa = PBXGroup;
 			children = (
+				FD93B95D1984500200F94F4B /* Libs */,
 				FD4DBD2C197C9152004062AE /* Categories */,
 				FD4B46C91978EBBF009B60EA /* Resources */,
 				FD4B46C21978E67E009B60EA /* Controllers */,
@@ -268,6 +289,17 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		FD93B95D1984500200F94F4B /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				FD93B961198450EE00F94F4B /* FSConverter.h */,
+				FD93B962198450EE00F94F4B /* FSConverter.m */,
+				FD93B95E1984502800F94F4B /* FSVenue.h */,
+				FD93B95F1984502800F94F4B /* FSVenue.m */,
+			);
+			name = Libs;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -275,9 +307,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FD0730F819762C540077463B /* Build configuration list for PBXNativeTarget "Belate" */;
 			buildPhases = (
+				24B03AA7D1AE48C0BD7B51EA /* Check Pods Manifest.lock */,
 				FD0730C819762C540077463B /* Sources */,
 				FD0730C919762C540077463B /* Frameworks */,
 				FD0730CA19762C540077463B /* Resources */,
+				B477D9073BD14179B55CDF49 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -360,6 +394,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		24B03AA7D1AE48C0BD7B51EA /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B477D9073BD14179B55CDF49 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FD0730C819762C540077463B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -369,6 +436,7 @@
 				FD6600EA1981EB9500C9E678 /* BLHangoutListViewController.m in Sources */,
 				FD4DBD3B197CA9B6004062AE /* BLUtility.m in Sources */,
 				FD4B46C51978E6BC009B60EA /* BLLoginViewController.m in Sources */,
+				FD93B9601984502800F94F4B /* FSVenue.m in Sources */,
 				FD4DBD35197C9275004062AE /* UIImage+RoundedCornerAdditions.m in Sources */,
 				FD4DBD38197C9F67004062AE /* BLConstants.m in Sources */,
 				FD0730E019762C540077463B /* BLAppDelegate.m in Sources */,
@@ -376,6 +444,7 @@
 				FD4DBD2F197C9172004062AE /* UIImage+ResizeAdditions.m in Sources */,
 				FD0730DC19762C540077463B /* main.m in Sources */,
 				FD6600ED1982201200C9E678 /* BLBlankHangoutListView.m in Sources */,
+				FD93B963198450EE00F94F4B /* FSConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +558,7 @@
 		};
 		FD0730F919762C540077463B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1B08A56402347338965B64A /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -500,6 +570,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Belate/Belate-Prefix.pch";
 				INFOPLIST_FILE = "Belate/Belate-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -507,6 +579,7 @@
 		};
 		FD0730FA19762C540077463B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1B08A56402347338965B64A /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -518,6 +591,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Belate/Belate-Prefix.pch";
 				INFOPLIST_FILE = "Belate/Belate-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

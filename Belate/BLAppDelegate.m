@@ -11,40 +11,50 @@
 #import "BLHangoutListViewController.h"
 #import "BLUtility.h"
 #import <Parse/Parse.h>
+#import "Foursquare2.h"
+
+//#import "FSVenue.h"
+//#import "FSConverter.h"
+
 
 @implementation BLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Init for Parse.
-    [Parse setApplicationId:@"7CCK0xUiudCJaCTZc9vwsDOPXOvCtm8PsRQFeNSC"
-                  clientKey:@"DD5KB441eyDCzZCXJZcF0AipYUfqVxeHcozawfuE"];
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
-    // Init Facebook.
-    [PFFacebookUtils initializeFacebook];
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    [self initSDKs:launchOptions];
+    
 //    [PFUser logOut];
     // Color for bar button.
     self.window.tintColor = [UIColor blackColor];
     
-    PFObject *hangout = [PFObject objectWithClassName:kHangoutClassKey];
-    hangout[kHangoutLocationKey] = @"Bad Ass coffee of Hawaii";
-    hangout[kHangoutTimeKey] = [NSDate date];
-    [hangout saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            PFObject *userHangout = [PFObject objectWithClassName:kUserHangoutClassKey];
-            userHangout[kUserHangoutStatusKey] = kUserHangoutStatusCreate;
-            userHangout[kUserHangoutUserKey] = [PFUser currentUser];
-            userHangout[kUserHangoutHangoutKey] = hangout;
-            [userHangout saveEventually];
-        }
-    }];
+//    [Foursquare2 venueSuggestCompletionByLatitude:@(37.417776)
+//                                        longitude:@(-122.134656)
+//                                             near:nil
+//                                       accuracyLL:nil
+//                                         altitude:nil
+//                                      accuracyAlt:nil
+//                                            query:@"Goog"
+//                                            limit:nil
+//                                           radius:nil
+//                                                s:nil
+//                                                w:nil
+//                                                n:nil
+//                                                e:nil
+//                                         callback:^(BOOL success, id result) {
+//                                             NSDictionary *dic = result;
+//                                             NSArray *venues = [dic valueForKeyPath:@"response.minivenues"];
+//                                             FSConverter *converter = [[FSConverter alloc] init];
+//                                             NSArray *avenues = [converter convertToObjects:venues];
+//                                             for (FSVenue *venue in avenues) {
+//                                                 NSLog(venue.name);
+//                                             }
+//                                         }];
+    
     
     UINavigationController *navigationController;
     if (![PFUser currentUser]) {
@@ -84,18 +94,42 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma - Facebook related.
+#pragma - Facebook & Foursquare related.
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-    return [FBAppCall handleOpenURL:url
-                  sourceApplication:sourceApplication
-                        withSession:[PFFacebookUtils session]];
+    if ([[url scheme] isEqualToString:@"fb675586302528435"]) {
+        return [FBAppCall handleOpenURL:url
+                      sourceApplication:sourceApplication
+                            withSession:[PFFacebookUtils session]];
+    } else if ([[url scheme] isEqualToString:@"Belate"]) {
+        return [Foursquare2 handleURL:url];
+    }
+    
+    return NO;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
 }
+
+#pragma - ()
+- (void)initSDKs:(NSDictionary *)launchOptions {
+    // Init for Parse.
+    [Parse setApplicationId:@"7CCK0xUiudCJaCTZc9vwsDOPXOvCtm8PsRQFeNSC"
+                  clientKey:@"DD5KB441eyDCzZCXJZcF0AipYUfqVxeHcozawfuE"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    // Init Facebook.
+    [PFFacebookUtils initializeFacebook];
+    
+    // Init Foursquare.
+    [Foursquare2 setupFoursquareWithClientId:@"323GNBQKOPVOSTSXG2ZOFCTYOH5IRKMOBRE5R2BG2CXT3XVZ"
+                                      secret:@"TA4Y1ILAU3MPWPT1UVTEKUMPZ3JHF0A4VW2MITIAN3AOPB0Q"
+                                 callbackURL:@""];
+}
+
+
 
 @end

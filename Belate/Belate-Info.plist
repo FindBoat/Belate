@@ -7,6 +7,12 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>Belate</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
 				<string>fb675586302528435</string>
 			</array>
 		</dict>
