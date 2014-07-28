@@ -1,11 +1,2 @@
-# Uncomment this line to define a global platform for your project
-# platform :ios, "6.0"
-
-target "Belate" do
-
-end
-
-target "BelateTests" do
-
-end
-
+platform :ios, '7.0'
+pod 'Foursquare-API-v2'

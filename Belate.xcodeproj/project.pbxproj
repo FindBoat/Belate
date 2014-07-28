@@ -45,6 +45,11 @@
 		FD93B95B19844E4800F94F4B /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD93B95A19844E4800F94F4B /* Accounts.framework */; };
 		FD93B9601984502800F94F4B /* FSVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93B95F1984502800F94F4B /* FSVenue.m */; };
 		FD93B963198450EE00F94F4B /* FSConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93B962198450EE00F94F4B /* FSConverter.m */; };
+		FD93B96619846BB500F94F4B /* BLCreateHangoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93B96519846BB500F94F4B /* BLCreateHangoutViewController.m */; };
+		FDEECDCE1985796700F1D391 /* BLVenueSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEECDCD1985796700F1D391 /* BLVenueSearchViewController.m */; };
+		FDEECDD41985DB3600F1D391 /* MGCDPImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDEECDD01985DB3600F1D391 /* MGCDPImages.xcassets */; };
+		FDEECDD51985DB3600F1D391 /* MGConferenceDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEECDD21985DB3600F1D391 /* MGConferenceDatePicker.m */; };
+		FDEECDD81985E8D000F1D391 /* BLDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEECDD71985E8D000F1D391 /* BLDatePickerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +117,16 @@
 		FD93B95F1984502800F94F4B /* FSVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSVenue.m; sourceTree = "<group>"; };
 		FD93B961198450EE00F94F4B /* FSConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSConverter.h; sourceTree = "<group>"; };
 		FD93B962198450EE00F94F4B /* FSConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSConverter.m; sourceTree = "<group>"; };
+		FD93B96419846BB500F94F4B /* BLCreateHangoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCreateHangoutViewController.h; sourceTree = "<group>"; };
+		FD93B96519846BB500F94F4B /* BLCreateHangoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCreateHangoutViewController.m; sourceTree = "<group>"; };
+		FDEECDCC1985796700F1D391 /* BLVenueSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLVenueSearchViewController.h; sourceTree = "<group>"; };
+		FDEECDCD1985796700F1D391 /* BLVenueSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLVenueSearchViewController.m; sourceTree = "<group>"; };
+		FDEECDD01985DB3600F1D391 /* MGCDPImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MGCDPImages.xcassets; sourceTree = "<group>"; };
+		FDEECDD11985DB3600F1D391 /* MGConferenceDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGConferenceDatePicker.h; sourceTree = "<group>"; };
+		FDEECDD21985DB3600F1D391 /* MGConferenceDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGConferenceDatePicker.m; sourceTree = "<group>"; };
+		FDEECDD31985DB3600F1D391 /* MGConferenceDatePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGConferenceDatePickerDelegate.h; sourceTree = "<group>"; };
+		FDEECDD61985E8D000F1D391 /* BLDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLDatePickerViewController.h; sourceTree = "<group>"; };
+		FDEECDD71985E8D000F1D391 /* BLDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLDatePickerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD07310519762CDA0077463B /* CoreLocation.framework in Frameworks */,
 				FD93B95B19844E4800F94F4B /* Accounts.framework in Frameworks */,
 				FD93B95919844E4200F94F4B /* Social.framework in Frameworks */,
 				FD07310B19762CF10077463B /* QuartzCore.framework in Frameworks */,
@@ -127,7 +143,6 @@
 				FD07310D19762CF70077463B /* Security.framework in Frameworks */,
 				FD07310919762CEA0077463B /* MobileCoreServices.framework in Frameworks */,
 				FD07310719762CE60077463B /* libz.dylib in Frameworks */,
-				FD07310519762CDA0077463B /* CoreLocation.framework in Frameworks */,
 				FD0730D219762C540077463B /* CoreGraphics.framework in Frameworks */,
 				FD07310319762CCC0077463B /* CFNetwork.framework in Frameworks */,
 				FD07310119762CB70077463B /* AudioToolbox.framework in Frameworks */,
@@ -264,6 +279,12 @@
 				FD4B46C41978E6BC009B60EA /* BLLoginViewController.m */,
 				FD6600E81981EB9500C9E678 /* BLHangoutListViewController.h */,
 				FD6600E91981EB9500C9E678 /* BLHangoutListViewController.m */,
+				FD93B96419846BB500F94F4B /* BLCreateHangoutViewController.h */,
+				FD93B96519846BB500F94F4B /* BLCreateHangoutViewController.m */,
+				FDEECDCC1985796700F1D391 /* BLVenueSearchViewController.h */,
+				FDEECDCD1985796700F1D391 /* BLVenueSearchViewController.m */,
+				FDEECDD61985E8D000F1D391 /* BLDatePickerViewController.h */,
+				FDEECDD71985E8D000F1D391 /* BLDatePickerViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -292,12 +313,24 @@
 		FD93B95D1984500200F94F4B /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				FDEECDCF1985DB3600F1D391 /* MGConferenceDatePicker */,
 				FD93B961198450EE00F94F4B /* FSConverter.h */,
 				FD93B962198450EE00F94F4B /* FSConverter.m */,
 				FD93B95E1984502800F94F4B /* FSVenue.h */,
 				FD93B95F1984502800F94F4B /* FSVenue.m */,
 			);
 			name = Libs;
+			sourceTree = "<group>";
+		};
+		FDEECDCF1985DB3600F1D391 /* MGConferenceDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				FDEECDD01985DB3600F1D391 /* MGCDPImages.xcassets */,
+				FDEECDD11985DB3600F1D391 /* MGConferenceDatePicker.h */,
+				FDEECDD21985DB3600F1D391 /* MGConferenceDatePicker.m */,
+				FDEECDD31985DB3600F1D391 /* MGConferenceDatePickerDelegate.h */,
+			);
+			path = MGConferenceDatePicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD0730DA19762C540077463B /* InfoPlist.strings in Resources */,
+				FDEECDD41985DB3600F1D391 /* MGCDPImages.xcassets in Resources */,
 				FD4B46CB1978EBD0009B60EA /* login.jpg in Resources */,
 				FD0730E219762C540077463B /* Images.xcassets in Resources */,
 			);
@@ -435,12 +469,16 @@
 				FD4DBD34197C9275004062AE /* UIImage+AlphaAdditions.m in Sources */,
 				FD6600EA1981EB9500C9E678 /* BLHangoutListViewController.m in Sources */,
 				FD4DBD3B197CA9B6004062AE /* BLUtility.m in Sources */,
+				FD93B96619846BB500F94F4B /* BLCreateHangoutViewController.m in Sources */,
 				FD4B46C51978E6BC009B60EA /* BLLoginViewController.m in Sources */,
 				FD93B9601984502800F94F4B /* FSVenue.m in Sources */,
 				FD4DBD35197C9275004062AE /* UIImage+RoundedCornerAdditions.m in Sources */,
+				FDEECDD81985E8D000F1D391 /* BLDatePickerViewController.m in Sources */,
 				FD4DBD38197C9F67004062AE /* BLConstants.m in Sources */,
+				FDEECDCE1985796700F1D391 /* BLVenueSearchViewController.m in Sources */,
 				FD0730E019762C540077463B /* BLAppDelegate.m in Sources */,
 				FD4B46C81978E6EC009B60EA /* BLLoginView.m in Sources */,
+				FDEECDD51985DB3600F1D391 /* MGConferenceDatePicker.m in Sources */,
 				FD4DBD2F197C9172004062AE /* UIImage+ResizeAdditions.m in Sources */,
 				FD0730DC19762C540077463B /* main.m in Sources */,
 				FD6600ED1982201200C9E678 /* BLBlankHangoutListView.m in Sources */,

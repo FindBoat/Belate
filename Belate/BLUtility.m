@@ -9,6 +9,7 @@
 #import "BLUtility.h"
 #import "UIImage+ResizeAdditions.h"
 #import <Parse/Parse.h>
+#import "OLGhostAlertView.h"
 
 
 @implementation BLUtility
@@ -159,6 +160,12 @@
     }
 }
 
-
++ (void)showErrorAlertWithTitle:(NSString *)title andMessage:(NSString *)message {
+    OLGhostAlertView *ghastly = [[OLGhostAlertView alloc] initWithTitle:title message:message];
+    ghastly.position = OLGhostAlertViewPositionCenter;
+    ghastly.style = OLGhostAlertViewStyleDark;
+    ghastly.timeout = 1.5;
+    [ghastly show];
+}
 
 @end

@@ -12,3 +12,9 @@
 #define COCOAPODS_VERSION_MINOR_Foursquare_API_v2 4
 #define COCOAPODS_VERSION_PATCH_Foursquare_API_v2 5
 
+// OLGhostAlertView
+#define COCOAPODS_POD_AVAILABLE_OLGhostAlertView
+#define COCOAPODS_VERSION_MAJOR_OLGhostAlertView 1
+#define COCOAPODS_VERSION_MINOR_OLGhostAlertView 7
+#define COCOAPODS_VERSION_PATCH_OLGhostAlertView 0
+

@@ -32,30 +32,6 @@
     // Color for bar button.
     self.window.tintColor = [UIColor blackColor];
     
-//    [Foursquare2 venueSuggestCompletionByLatitude:@(37.417776)
-//                                        longitude:@(-122.134656)
-//                                             near:nil
-//                                       accuracyLL:nil
-//                                         altitude:nil
-//                                      accuracyAlt:nil
-//                                            query:@"Goog"
-//                                            limit:nil
-//                                           radius:nil
-//                                                s:nil
-//                                                w:nil
-//                                                n:nil
-//                                                e:nil
-//                                         callback:^(BOOL success, id result) {
-//                                             NSDictionary *dic = result;
-//                                             NSArray *venues = [dic valueForKeyPath:@"response.minivenues"];
-//                                             FSConverter *converter = [[FSConverter alloc] init];
-//                                             NSArray *avenues = [converter convertToObjects:venues];
-//                                             for (FSVenue *venue in avenues) {
-//                                                 NSLog(venue.name);
-//                                             }
-//                                         }];
-    
-    
     UINavigationController *navigationController;
     if (![PFUser currentUser]) {
         BLLoginViewController *loginViewController = [BLLoginViewController new];

@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-OLGhostAlertView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>A760E01D302042FC9DBC14C2</key>
+		<key>6B45DA1B8647416B91ABDBE6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A943B04FEEFE4E94AF96B6B6</key>
+		<key>94EFAD186A93460D900718A8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B468F420A28E4D3E9DEEFF7E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

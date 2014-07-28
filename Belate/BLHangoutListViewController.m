@@ -8,6 +8,7 @@
 
 #import "BLHangoutListViewController.h"
 #import "BLBlankHangoutListView.h"
+#import "BLCreateHangoutViewController.h"
 #import "BLUtility.h"
 
 @interface BLHangoutListViewController()
@@ -38,7 +39,7 @@
     UIBarButtonItem *navCreateButton = [[UIBarButtonItem alloc]
                                         initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                         target:self
-                                        action:@selector(save_Clicked:)];
+                                        action:@selector(createButtonAction:)];
     self.navigationItem.rightBarButtonItem = navCreateButton;
     
     // Removes separator for empty cells.
@@ -46,10 +47,12 @@
     
     self.blankView = [[BLBlankHangoutListView alloc] initWithFrame:self.tableView.bounds];
     self.tableView.tableHeaderView = self.blankView;
+    
+    [self.blankView.createButton addTarget:self action:@selector(createButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+
 }
 
 #pragma mark - PFQueryTableViewController
-
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
     
@@ -65,7 +68,6 @@
 }
 
 #pragma mark - UITableViewDelegate
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     static NSString *cellIdentifier = @"Cell";
     
@@ -80,6 +82,13 @@
     cell.detailTextLabel.text = @"12312312";
     
     return cell;
+}
+
+#pragma mark - ()
+- (void)createButtonAction:(id)sender {
+    BLCreateHangoutViewController *createHangoutViewController = [BLCreateHangoutViewController new];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:createHangoutViewController];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 @end

@@ -16,4 +16,6 @@
 
 + (void)processFacebookProfilePictureData:(NSData *)newProfilePictureData;
 
++ (void)showErrorAlertWithTitle:(NSString *)title andMessage:(NSString *)message;
+
 @end
