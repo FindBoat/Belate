@@ -50,7 +50,7 @@
 }
 
 #pragma mark - MGConferenceDatePickerDelegate
--(void)conferenceDatePicker:(MGConferenceDatePicker *)datePicker saveDate:(NSDate *)date {
+- (void)conferenceDatePicker:(MGConferenceDatePicker *)datePicker saveDate:(NSDate *)date {
     // Check if date is a future.
     if ([date compare:[NSDate date]] == NSOrderedDescending) {
         [self.delegate datePickerViewController:self didSelectDate:date];
@@ -59,6 +59,15 @@
         [BLUtility showErrorAlertWithTitle:@"Hint" andMessage:@"Please select a future date :)"];
     }
 }
+
+- (void)conferenceDatePicker:(MGConferenceDatePicker *)datePicker scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.navigationItem.rightBarButtonItem setEnabled:NO];
+}
+
+- (void)conferenceDatePicker:(MGConferenceDatePicker *)datePicker scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self.navigationItem.rightBarButtonItem setEnabled:YES];
+}
+
 
 - (void)navCancelButtonAction:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

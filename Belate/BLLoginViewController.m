@@ -11,8 +11,6 @@
 #import "BLUtility.h"
 #import "BLHangoutListViewController.h"
 #import <Parse/Parse.h>
-#import <FacebookSDK/FacebookSDK.h>
-
 
 @interface BLLoginViewController () {
     NSMutableData *_data;

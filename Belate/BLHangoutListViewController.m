@@ -46,8 +46,6 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     self.blankView = [[BLBlankHangoutListView alloc] initWithFrame:self.tableView.bounds];
-    self.tableView.tableHeaderView = self.blankView;
-    
     [self.blankView.createButton addTarget:self action:@selector(createButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 
 }
@@ -67,6 +65,18 @@
     return query;
 }
 
+- (void)objectsDidLoad:(NSError *)error {
+    [super objectsDidLoad:error];
+    
+    if (self.objects.count == 0 && ![[self queryForTable] hasCachedResult]) {
+        self.blankView.alpha = 1.0f;
+        self.tableView.tableHeaderView = self.blankView;
+    } else {
+        self.blankView.alpha = 0;
+        self.tableView.tableHeaderView = nil;
+    }
+}
+
 #pragma mark - UITableViewDelegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     static NSString *cellIdentifier = @"Cell";
@@ -78,15 +88,22 @@
     }
     
     // Configure the cell to show todo item with a priority at the bottom
-    cell.textLabel.text = object[kHangoutLocationKey];
+    cell.textLabel.text = object[kHangoutLocationNameKey];
     cell.detailTextLabel.text = @"12312312";
     
     return cell;
 }
 
+#pragma mark - BLCreateHangoutViewControllerDelegate
+- (void)createHangoutViewController:(id)controller didCreateHangout:(PFObject *)hangout {
+    [self loadObjects];
+}
+
+
 #pragma mark - ()
 - (void)createButtonAction:(id)sender {
     BLCreateHangoutViewController *createHangoutViewController = [BLCreateHangoutViewController new];
+    createHangoutViewController.delegate = self;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:createHangoutViewController];
     [self presentViewController:navigationController animated:YES completion:nil];
 }

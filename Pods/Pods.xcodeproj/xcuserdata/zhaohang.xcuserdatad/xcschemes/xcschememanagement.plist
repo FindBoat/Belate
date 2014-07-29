@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-Foursquare-API-v2.xcscheme</key>
+		<key>Pods-BlockAlertsAnd-ActionSheets.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-OLGhostAlertView.xcscheme</key>
+		<key>Pods-Foursquare-API-v2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>6B45DA1B8647416B91ABDBE6</key>
+		<key>60434238391A435283545D9B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>94EFAD186A93460D900718A8</key>
+		<key>8ED0A2E762984B768AE7515E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B468F420A28E4D3E9DEEFF7E</key>
+		<key>FED9BD0A65D447CC9B0E7A5E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

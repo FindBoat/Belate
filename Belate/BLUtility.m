@@ -9,7 +9,7 @@
 #import "BLUtility.h"
 #import "UIImage+ResizeAdditions.h"
 #import <Parse/Parse.h>
-#import "OLGhostAlertView.h"
+#import "BlockAlertView.h"
 
 
 @implementation BLUtility
@@ -161,11 +161,30 @@
 }
 
 + (void)showErrorAlertWithTitle:(NSString *)title andMessage:(NSString *)message {
-    OLGhostAlertView *ghastly = [[OLGhostAlertView alloc] initWithTitle:title message:message];
-    ghastly.position = OLGhostAlertViewPositionCenter;
-    ghastly.style = OLGhostAlertViewStyleDark;
-    ghastly.timeout = 1.5;
-    [ghastly show];
+    
+    BlockAlertView *alert = [BlockAlertView alertWithTitle:title
+                                                   message:message];
+    [alert setCancelButtonWithTitle:@"OK" block:nil];
+    [alert show];
 }
+
++ (void)askFacebookPublishPermissionWithBlock:(void(^)(BOOL succeeded))block {
+    if ([[[PFFacebookUtils session] permissions] containsObject:@"publish_actions"]) {
+        block(YES);
+    } else {
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Permission"
+                                                       message:@"You must grant post permission to your Facebook."];
+        [alert setCancelButtonWithTitle:@"OK" block:^{
+            [PFFacebookUtils reauthorizeUser:[PFUser currentUser]
+                      withPublishPermissions:@[@"publish_actions"]
+                                    audience:FBSessionDefaultAudienceFriends
+                                       block:^(BOOL succeeded, NSError *error) {
+                                           block(succeeded);
+                                       }];
+        }];
+        [alert show];
+    }
+}
+
 
 @end

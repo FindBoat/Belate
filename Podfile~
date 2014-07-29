@@ -1,2 +1,5 @@
 platform :ios, '7.0'
 pod 'Foursquare-API-v2'
+pod 'OLGhostAlertView'
+pod 'RNBlurModalView', '~> 0.1.0'
+pod 'BlockAlertsAnd-ActionSheets', '~> 1.0.6'

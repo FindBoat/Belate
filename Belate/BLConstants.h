@@ -13,6 +13,8 @@
 extern NSString *const kMainColor;
 
 #pragma mark - User class
+extern NSString *const kUserClassKey;
+
 extern NSString *const kUserFacebookIdKey;
 extern NSString *const kUserNameKey;
 extern NSString *const kUserProfilePictureMediumKey;
@@ -22,7 +24,8 @@ extern NSString *const kUserProfilePictureSmallKey;
 extern NSString *const kHangoutClassKey;
 
 extern NSString *const kHangoutTimeKey;
-extern NSString *const kHangoutLocationKey;
+extern NSString *const kHangoutLocationNameKey;
+extern NSString *const kHangoutLocationAddressKey;
 
 
 #pragma mark - Friend class keys

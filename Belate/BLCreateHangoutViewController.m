@@ -10,6 +10,7 @@
 #import "FSVenue.h"
 #import "BLUtility.h"
 #import "MGConferenceDatePicker.h"
+#import "BLFriendSelectViewController.h"
 
 @interface BLCreateHangoutViewController ()
 
@@ -18,6 +19,7 @@
 
 @property (nonatomic, strong) FSVenue *venue;
 @property (nonatomic, strong) NSDate *date;
+@property (nonatomic, copy) NSMutableArray *friends;
 
 @end
 
@@ -32,6 +34,12 @@
                                         target:self
                                         action:@selector(navCancelButtonAction:)];
     self.navigationItem.leftBarButtonItem = navCancelButton;
+    
+    UIBarButtonItem *navDoneButton = [[UIBarButtonItem alloc]
+                                      initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                      target:self
+                                      action:@selector(navDoneButtonAction:)];
+    self.navigationItem.rightBarButtonItem = navDoneButton;
     
     // Init TableView.
     self.tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]
@@ -62,6 +70,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
 
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15.0];
     if (indexPath.section == 0) {
         if (self.venue) {
             cell.textLabel.text = self.venue.name;
@@ -78,7 +87,23 @@
             cell.textLabel.text = @"When shall you meet";
         }
     } else if (indexPath.section == 2) {
-        cell.textLabel.text = @"Add your friends to this Hangout";
+        NSMutableString *strFriends = [NSMutableString new];
+        if (self.friends) {
+            for (int i = 0; i < MIN(2, self.friends.count); ++i) {
+                if (i == 0) {
+                    [strFriends appendString:self.friends[i][kUserNameKey]];
+                } else {
+                    [strFriends appendString:@", "];
+                    [strFriends appendString:self.friends[i][kUserNameKey]];
+                }
+            }
+            if (self.friends.count > 2) {
+                [strFriends appendString:[NSString stringWithFormat:@", +%lu", (self.friends.count - 2)]];
+            }
+            cell.textLabel.text = strFriends;
+        } else {
+            cell.textLabel.text = @"Add your friends to this Hangout";
+        }
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -97,6 +122,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (indexPath.section == 0) {
         self.venueSearchViewController = [BLVenueSearchViewController new];
         self.venueSearchViewController.delegate = self;
@@ -106,11 +132,29 @@
         [datePickerViewController setDelegate:self];
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:datePickerViewController];
         [self presentViewController:navigationController animated:YES completion:nil];
+    } else if (indexPath.section == 2) {
+        BLFriendSelectViewController *friendSelectViewController = [[BLFriendSelectViewController alloc] initWithStyle:UITableViewStylePlain andSelectedUsers:self.friends];
+        friendSelectViewController.delegate = self;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:friendSelectViewController];
+        [self presentViewController:navigationController animated:YES completion:nil];
     }
 }
 
 - (void)navCancelButtonAction:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)navDoneButtonAction:(id)sender {
+    if (![self checkHangoutValidity]) {
+        return;
+    }
+    
+    [BLUtility askFacebookPublishPermissionWithBlock:^(BOOL succeeded) {
+        if (succeeded) {
+            [self createHangout];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }];
 }
 
 #pragma mark - BLVenueSearchViewControllerDelegate
@@ -125,5 +169,50 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - BLFriendSelectViewControllerDelegate
+- (void)friendSelectViewController:(id)controller didSelectFriends:(NSMutableArray *)friends {
+    self.friends = friends;
+    [self.tableView reloadData];
+}
+
+#pragma mark - ()
+- (BOOL)checkHangoutValidity {
+    if (!self.venue) {
+        [BLUtility showErrorAlertWithTitle:@"Location" andMessage:@"Please select a location :)"];
+        return NO;
+    } else if (!self.date) {
+        [BLUtility showErrorAlertWithTitle:@"Time" andMessage:@"Please select a time :)"];
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (void)createHangout {
+    PFObject *hangout = [PFObject objectWithClassName:kHangoutClassKey];
+    hangout[kHangoutTimeKey] = self.date;
+    hangout[kHangoutLocationNameKey] = self.venue.name;
+    hangout[kHangoutLocationAddressKey] = self.venue.location.address;
+    [hangout saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            // Store hangout user relation.
+            PFObject *relation = [PFObject objectWithClassName:kUserHangoutClassKey];
+            relation[kUserHangoutHangoutKey] = hangout;
+            relation[kUserHangoutUserKey] = [PFUser currentUser];
+            relation[kUserHangoutStatusKey] = kUserHangoutStatusCreate;
+            [relation saveInBackground];
+            
+            for (PFUser *friend in self.friends) {
+                PFObject *relation = [PFObject objectWithClassName:kUserHangoutClassKey];
+                relation[kUserHangoutHangoutKey] = hangout;
+                relation[kUserHangoutUserKey] = friend;
+                relation[kUserHangoutStatusKey] = kUserHangoutStatusRequested;
+                [relation saveInBackground];
+            }
+            
+            [self.delegate createHangoutViewController:self didCreateHangout:hangout];
+        }
+    }];
+}
 
 @end

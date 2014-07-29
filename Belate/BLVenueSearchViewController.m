@@ -94,7 +94,9 @@
 
     FSVenue *venue = self.venues[indexPath.row];
     cell.textLabel.text = venue.name;
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15.0];
     cell.detailTextLabel.text = venue.location.address;
+    cell.detailTextLabel.textColor = [UIColor grayColor];
     return cell;
 }
 

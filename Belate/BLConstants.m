@@ -13,6 +13,8 @@
 NSString *const kMainColor = @"6266D8";
 
 #pragma mark - User class
+NSString *const kUserClassKey = @"_User";
+
 NSString *const kUserFacebookIdKey = @"facebookId";
 NSString *const kUserNameKey = @"name";
 NSString *const kUserProfilePictureMediumKey = @"profilePictureMedium";
@@ -22,7 +24,8 @@ NSString *const kUserProfilePictureSmallKey = @"profilePictureSmall";
 NSString *const kHangoutClassKey = @"Hangout";
 
 NSString *const kHangoutTimeKey = @"time";
-NSString *const kHangoutLocationKey = @"location";
+NSString *const kHangoutLocationNameKey = @"locationName";
+NSString *const kHangoutLocationAddressKey = @"locationAddress";
 
 #pragma mark - Friend class keys
 NSString *const kFriendClassKey = @"Friend";

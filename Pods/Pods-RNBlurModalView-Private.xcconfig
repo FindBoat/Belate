@@ -1,0 +1,5 @@
+#include "Pods-RNBlurModalView.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/RNBlurModalView" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/BlockAlertsAnd-ActionSheets" "${PODS_ROOT}/Headers/Foursquare-API-v2" "${PODS_ROOT}/Headers/OLGhostAlertView" "${PODS_ROOT}/Headers/RNBlurModalView"
+OTHER_LDFLAGS = -ObjC ${PODS_RNBLURMODALVIEW_OTHER_LDFLAGS}
+PODS_ROOT = ${SRCROOT}

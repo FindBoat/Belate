@@ -18,4 +18,6 @@
 
 + (void)showErrorAlertWithTitle:(NSString *)title andMessage:(NSString *)message;
 
++ (void)askFacebookPublishPermissionWithBlock:(void(^)(BOOL succeeded))block;
+
 @end

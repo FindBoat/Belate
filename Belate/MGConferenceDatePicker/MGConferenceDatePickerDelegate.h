@@ -15,5 +15,6 @@
 
 @optional
 - (void)conferenceDatePicker:(MGConferenceDatePicker *)datePicker saveDate:(NSDate *)date;
-
+- (void)conferenceDatePicker:(MGConferenceDatePicker *)datePicker scrollViewWillBeginDragging:(UIScrollView *)scrollView;
+- (void)conferenceDatePicker:(MGConferenceDatePicker *)datePicker scrollViewDidEndDecelerating:(UIScrollView *)scrollView;
 @end

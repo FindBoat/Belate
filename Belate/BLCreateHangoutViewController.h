@@ -10,7 +10,14 @@
 #import "BLVenueSearchViewController.h"
 #import "BLDatePickerViewController.h"
 #import "MGConferenceDatePickerDelegate.h"
+#import "BLFriendSelectViewController.h"
 
-@interface BLCreateHangoutViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, BLVenueSearchViewControllerDelegate, BLDatePickerViewControllerDelegate>
+@protocol BLCreateHangoutViewControllerDelegate <NSObject>
+- (void)createHangoutViewController:(id)controller didCreateHangout:(PFObject *)hangout;
+@end
+
+@interface BLCreateHangoutViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, BLVenueSearchViewControllerDelegate, BLDatePickerViewControllerDelegate, BLFriendSelectViewControllerDelegate>
+
+@property (nonatomic, weak) id<BLCreateHangoutViewControllerDelegate> delegate;
 
 @end

@@ -1,13 +1,15 @@
 PODS:
+  - BlockAlertsAnd-ActionSheets (1.0.6):
+    - BlockAlertsAnd-ActionSheets/TableAlertView
+  - BlockAlertsAnd-ActionSheets/TableAlertView (1.0.6)
   - Foursquare-API-v2 (1.4.5)
-  - OLGhostAlertView (1.7)
 
 DEPENDENCIES:
+  - BlockAlertsAnd-ActionSheets (~> 1.0.6)
   - Foursquare-API-v2
-  - OLGhostAlertView
 
 SPEC CHECKSUMS:
+  BlockAlertsAnd-ActionSheets: 2f9d02f0c57b1789b7db3406ffad72a67f01ad83
   Foursquare-API-v2: 31b9b6a9e68bc914bae4d3e20d65dc2826f4394d
-  OLGhostAlertView: 8b963aacbce7b26c0d552743dd3a15ee568c16b8
 
 COCOAPODS: 0.32.1

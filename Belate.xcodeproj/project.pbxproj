@@ -50,6 +50,10 @@
 		FDEECDD41985DB3600F1D391 /* MGCDPImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDEECDD01985DB3600F1D391 /* MGCDPImages.xcassets */; };
 		FDEECDD51985DB3600F1D391 /* MGConferenceDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEECDD21985DB3600F1D391 /* MGConferenceDatePicker.m */; };
 		FDEECDD81985E8D000F1D391 /* BLDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEECDD71985E8D000F1D391 /* BLDatePickerViewController.m */; };
+		FDEECDDB1986A4B000F1D391 /* BLFriendSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEECDDA1986A4B000F1D391 /* BLFriendSelectViewController.m */; };
+		FDEECDDE1986ACEE00F1D391 /* BLFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEECDDD1986ACEE00F1D391 /* BLFriendCell.m */; };
+		FDEECDE21986ADE000F1D391 /* avatar-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = FDEECDE01986ADE000F1D391 /* avatar-placeholder.png */; };
+		FDEECDE31986ADE000F1D391 /* avatar-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDEECDE11986ADE000F1D391 /* avatar-placeholder@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +131,12 @@
 		FDEECDD31985DB3600F1D391 /* MGConferenceDatePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGConferenceDatePickerDelegate.h; sourceTree = "<group>"; };
 		FDEECDD61985E8D000F1D391 /* BLDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLDatePickerViewController.h; sourceTree = "<group>"; };
 		FDEECDD71985E8D000F1D391 /* BLDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLDatePickerViewController.m; sourceTree = "<group>"; };
+		FDEECDD91986A4B000F1D391 /* BLFriendSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLFriendSelectViewController.h; sourceTree = "<group>"; };
+		FDEECDDA1986A4B000F1D391 /* BLFriendSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLFriendSelectViewController.m; sourceTree = "<group>"; };
+		FDEECDDC1986ACEE00F1D391 /* BLFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLFriendCell.h; sourceTree = "<group>"; };
+		FDEECDDD1986ACEE00F1D391 /* BLFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLFriendCell.m; sourceTree = "<group>"; };
+		FDEECDE01986ADE000F1D391 /* avatar-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar-placeholder.png"; sourceTree = "<group>"; };
+		FDEECDE11986ADE000F1D391 /* avatar-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar-placeholder@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +225,9 @@
 		FD0730D519762C540077463B /* Belate */ = {
 			isa = PBXGroup;
 			children = (
+				FDEECDE01986ADE000F1D391 /* avatar-placeholder.png */,
+				FDEECDE11986ADE000F1D391 /* avatar-placeholder@2x.png */,
+				FDEECDDF1986ADD700F1D391 /* Resources */,
 				FD93B95D1984500200F94F4B /* Libs */,
 				FD4DBD2C197C9152004062AE /* Categories */,
 				FD4B46C91978EBBF009B60EA /* Resources */,
@@ -268,6 +281,8 @@
 				FD4B46C71978E6EC009B60EA /* BLLoginView.m */,
 				FD6600EB1982201200C9E678 /* BLBlankHangoutListView.h */,
 				FD6600EC1982201200C9E678 /* BLBlankHangoutListView.m */,
+				FDEECDDC1986ACEE00F1D391 /* BLFriendCell.h */,
+				FDEECDDD1986ACEE00F1D391 /* BLFriendCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -285,6 +300,8 @@
 				FDEECDCD1985796700F1D391 /* BLVenueSearchViewController.m */,
 				FDEECDD61985E8D000F1D391 /* BLDatePickerViewController.h */,
 				FDEECDD71985E8D000F1D391 /* BLDatePickerViewController.m */,
+				FDEECDD91986A4B000F1D391 /* BLFriendSelectViewController.h */,
+				FDEECDDA1986A4B000F1D391 /* BLFriendSelectViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -331,6 +348,13 @@
 				FDEECDD31985DB3600F1D391 /* MGConferenceDatePickerDelegate.h */,
 			);
 			path = MGConferenceDatePicker;
+			sourceTree = "<group>";
+		};
+		FDEECDDF1986ADD700F1D391 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -412,7 +436,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD0730DA19762C540077463B /* InfoPlist.strings in Resources */,
+				FDEECDE31986ADE000F1D391 /* avatar-placeholder@2x.png in Resources */,
 				FDEECDD41985DB3600F1D391 /* MGCDPImages.xcassets in Resources */,
+				FDEECDE21986ADE000F1D391 /* avatar-placeholder.png in Resources */,
 				FD4B46CB1978EBD0009B60EA /* login.jpg in Resources */,
 				FD0730E219762C540077463B /* Images.xcassets in Resources */,
 			);
@@ -478,6 +504,8 @@
 				FDEECDCE1985796700F1D391 /* BLVenueSearchViewController.m in Sources */,
 				FD0730E019762C540077463B /* BLAppDelegate.m in Sources */,
 				FD4B46C81978E6EC009B60EA /* BLLoginView.m in Sources */,
+				FDEECDDB1986A4B000F1D391 /* BLFriendSelectViewController.m in Sources */,
+				FDEECDDE1986ACEE00F1D391 /* BLFriendCell.m in Sources */,
 				FDEECDD51985DB3600F1D391 /* MGConferenceDatePicker.m in Sources */,
 				FD4DBD2F197C9172004062AE /* UIImage+ResizeAdditions.m in Sources */,
 				FD0730DC19762C540077463B /* main.m in Sources */,

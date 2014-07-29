@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "BLCreateHangoutViewController.h"
 
-@interface BLHangoutListViewController : PFQueryTableViewController
+@interface BLHangoutListViewController : PFQueryTableViewController <BLCreateHangoutViewControllerDelegate>
 
 @end

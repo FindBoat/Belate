@@ -6,15 +6,21 @@
 // project.
 
 
+// BlockAlertsAnd-ActionSheets
+#define COCOAPODS_POD_AVAILABLE_BlockAlertsAnd_ActionSheets
+#define COCOAPODS_VERSION_MAJOR_BlockAlertsAnd_ActionSheets 1
+#define COCOAPODS_VERSION_MINOR_BlockAlertsAnd_ActionSheets 0
+#define COCOAPODS_VERSION_PATCH_BlockAlertsAnd_ActionSheets 6
+
+// BlockAlertsAnd-ActionSheets/TableAlertView
+#define COCOAPODS_POD_AVAILABLE_BlockAlertsAnd_ActionSheets_TableAlertView
+#define COCOAPODS_VERSION_MAJOR_BlockAlertsAnd_ActionSheets_TableAlertView 1
+#define COCOAPODS_VERSION_MINOR_BlockAlertsAnd_ActionSheets_TableAlertView 0
+#define COCOAPODS_VERSION_PATCH_BlockAlertsAnd_ActionSheets_TableAlertView 6
+
 // Foursquare-API-v2
 #define COCOAPODS_POD_AVAILABLE_Foursquare_API_v2
 #define COCOAPODS_VERSION_MAJOR_Foursquare_API_v2 1
 #define COCOAPODS_VERSION_MINOR_Foursquare_API_v2 4
 #define COCOAPODS_VERSION_PATCH_Foursquare_API_v2 5
-
-// OLGhostAlertView
-#define COCOAPODS_POD_AVAILABLE_OLGhostAlertView
-#define COCOAPODS_VERSION_MAJOR_OLGhostAlertView 1
-#define COCOAPODS_VERSION_MINOR_OLGhostAlertView 7
-#define COCOAPODS_VERSION_PATCH_OLGhostAlertView 0
 
