@@ -46,11 +46,11 @@ NSString *const kUserHangoutHangoutKey = @"hangout";
 NSString *const kUserHangoutStatusKey = @"status";
 
 #pragma mark - User Hangout relation value
-NSString *const kUserHangoutStatusCreate = @"create";
-NSString *const kUserHangoutStatusRequested = @"requested";
-NSString *const kUserHangoutStatusJoin = @"join";
-NSString *const kUserHangoutStatusReject = @"reject";
-NSString *const kUserHangoutStatusArrived = @"arrived";
-NSString *const kUserHangoutStatusLate = @"late";
+NSString *const kUserHangoutStatusCreate = @"1_create";
+NSString *const kUserHangoutStatusRequested = @"0_requested";
+NSString *const kUserHangoutStatusJoin = @"2_join";
+NSString *const kUserHangoutStatusReject = @"5_reject";
+NSString *const kUserHangoutStatusArrived = @"3_arrived";
+NSString *const kUserHangoutStatusLate = @"4_late";
 
 @end

@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 FindBoat. All rights reserved.
 //
 
-#import <Parse/Parse.h>
-
 @interface BLFriendCell : UITableViewCell
 
 @property (nonatomic, strong) PFUser *user;

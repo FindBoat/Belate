@@ -60,14 +60,9 @@
     }
 }
 
-- (void)conferenceDatePicker:(MGConferenceDatePicker *)datePicker scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [self.navigationItem.rightBarButtonItem setEnabled:NO];
+- (void)conferenceDatePicker:(MGConferenceDatePicker *)datePicker doneButtonShouldEnable:(BOOL)enable {
+    [self.navigationItem.rightBarButtonItem setEnabled:enable];
 }
-
-- (void)conferenceDatePicker:(MGConferenceDatePicker *)datePicker scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [self.navigationItem.rightBarButtonItem setEnabled:YES];
-}
-
 
 - (void)navCancelButtonAction:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

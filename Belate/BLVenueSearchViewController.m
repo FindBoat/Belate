@@ -24,6 +24,8 @@
 
 @property (nonatomic, weak) NSOperation *lastSearchOperation;
 
+@property (nonatomic) BOOL loading;
+
 @end
 
 @implementation BLVenueSearchViewController
@@ -47,13 +49,11 @@
     self.searchController = [[UISearchDisplayController alloc]initWithSearchBar:searchBar contentsController:self];
     self.searchController.searchResultsDataSource = self;
     self.searchController.searchResultsDelegate = self;
+    self.searchController.searchResultsTableView.hidden = NO;
     
-    self.spinner = [[UIActivityIndicatorView alloc]
-                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    self.spinner.center = CGPointMake(160, 240);
-    self.spinner.hidesWhenStopped = YES;
-
     self.view = self.tableView;
+    
+    self.loading = NO;
 }
 
 - (void)viewDidLoad {
@@ -66,6 +66,12 @@
     [self.searchController setActive:YES animated:YES];
     [self.searchController.searchBar becomeFirstResponder];
 
+    // Add spinner when loading.
+    self.spinner = [[UIActivityIndicatorView alloc]
+                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.spinner.center = CGPointMake(160, 240);
+    self.spinner.hidesWhenStopped = YES;
+    [self.view addSubview:self.spinner];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -81,7 +87,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.venues count];
+    // This is a hack to hide "No Results" while loading.
+    if (self.venues.count || !self.loading) {
+        return self.venues.count;
+    } else {
+        return 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -91,12 +102,20 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
+    
+    // When loading, we display an invisible cell to hide "No Results".
+    if (!self.venues.count && self.loading) {
+        cell.hidden = YES;
+        return cell;
+    }
 
     FSVenue *venue = self.venues[indexPath.row];
     cell.textLabel.text = venue.name;
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15.0];
-    cell.detailTextLabel.text = venue.location.address;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ at %@, %@", venue.mainCategory, venue.location.address, venue.location.city];
     cell.detailTextLabel.textColor = [UIColor grayColor];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
@@ -113,28 +132,31 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
 - (void)startSearchWithString:(NSString *)searchText {
+    self.loading = YES;
     [self.spinner startAnimating];
     
     // Append * if query is less than 3 letters.
     NSMutableString *query = [[NSMutableString alloc] initWithString:searchText];
     if (searchText.length < 3) {
-        for (int i = 3 - searchText.length; i > 0; --i) {
+        for (int i = 3 - (int)searchText.length; i > 0; --i) {
             [query appendString:@"*"];
         }
     }
     
     [self.lastSearchOperation cancel];
-    self.lastSearchOperation = [Foursquare2 venueSuggestCompletionByLatitude:@(37.418038)
-                                                                   longitude:@(-122.134889)
+    
+    self.lastSearchOperation = [Foursquare2 venueSuggestCompletionByLatitude:@(37.422293)
+                                                                   longitude:@(-122.083954)
+//    self.lastSearchOperation = [Foursquare2 venueSuggestCompletionByLatitude:@(self.location.coordinate.latitude)
+//                                                                   longitude:@(self.location.coordinate.longitude)
                                                                         near:nil
                                                                   accuracyLL:nil
                                                                     altitude:nil
                                                                  accuracyAlt:nil
                                                                        query:query
                                                                        limit:nil
-                                                                      radius:nil
+                                                                      radius:@(80000)
                                                                            s:nil
                                                                            w:nil
                                                                            n:nil
@@ -146,10 +168,14 @@
                                                                         NSDictionary *dic = result;
                                                                         NSArray *venues = [dic valueForKeyPath:@"response.minivenues"];
                                                                         FSConverter *converter = [[FSConverter alloc] init];
-                                                                        self.venues = [converter convertToObjects:venues];
+                                                                        self.venues = (NSMutableArray *)[converter convertToObjects:venues];
+                                                                        self.loading = NO;
+
                                                                         [self.searchDisplayController.searchResultsTableView reloadData];
+
                                                                         [self.spinner stopAnimating];
                                                                     }];
 }
+
 
 @end

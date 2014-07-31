@@ -446,6 +446,7 @@ const float LBL_BORDER_OFFSET = 8.0;
         
         if (![_svMins isScrolling] && ![_svHours isScrolling] && ![_svMeridians isScrolling]) {
             [_saveButton setEnabled:YES];
+            [self.delegate conferenceDatePicker:self doneButtonShouldEnable:YES];
             [_svMoments setUserInteractionEnabled:YES];
             [_svMoments setAlpha:1.0];
         }
@@ -607,18 +608,15 @@ const float LBL_BORDER_OFFSET = 8.0;
     NSLog(@"didEndDecelerating");
     [(MGPickerScrollView *)scrollView setScrolling:NO];
     [self centerValueForScrollView:(MGPickerScrollView *)scrollView];
-    
-    [self.delegate conferenceDatePicker:self scrollViewDidEndDecelerating:scrollView];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     [_saveButton setEnabled:NO];
+    [self.delegate conferenceDatePicker:self doneButtonShouldEnable:NO];
     
     MGPickerScrollView *sv = (MGPickerScrollView *)scrollView;
     [sv setScrolling:YES];
     [sv dehighlightLastCell];
-
-    [self.delegate conferenceDatePicker:self scrollViewWillBeginDragging:scrollView];
 }
 
 #pragma - UITableViewDelegate

@@ -11,6 +11,7 @@
 #import "BLUtility.h"
 #import "MGConferenceDatePicker.h"
 #import "BLFriendSelectViewController.h"
+#import "MBProgressHUD.h"
 
 @interface BLCreateHangoutViewController ()
 
@@ -189,6 +190,8 @@
 }
 
 - (void)createHangout {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     PFObject *hangout = [PFObject objectWithClassName:kHangoutClassKey];
     hangout[kHangoutTimeKey] = self.date;
     hangout[kHangoutLocationNameKey] = self.venue.name;
@@ -196,23 +199,41 @@
     [hangout saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             // Store hangout user relation.
+            NSMutableArray *relations = [NSMutableArray new];
+            
             PFObject *relation = [PFObject objectWithClassName:kUserHangoutClassKey];
             relation[kUserHangoutHangoutKey] = hangout;
             relation[kUserHangoutUserKey] = [PFUser currentUser];
             relation[kUserHangoutStatusKey] = kUserHangoutStatusCreate;
-            [relation saveInBackground];
+            [relations addObject:relation];
             
             for (PFUser *friend in self.friends) {
                 PFObject *relation = [PFObject objectWithClassName:kUserHangoutClassKey];
                 relation[kUserHangoutHangoutKey] = hangout;
                 relation[kUserHangoutUserKey] = friend;
                 relation[kUserHangoutStatusKey] = kUserHangoutStatusRequested;
-                [relation saveInBackground];
+                [relations addObject:relation];
             }
             
-            [self.delegate createHangoutViewController:self didCreateHangout:hangout];
+            [PFObject saveAllInBackground:relations block:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    [self createLocalNotification];
+                    [self.delegate createHangoutViewController:self didCreateHangout:hangout];
+                }
+                [hud hide:YES];
+            }];
         }
     }];
+}
+
+- (void)createLocalNotification {
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.fireDate = self.date;
+    localNotification.alertBody = [NSString stringWithFormat:@"You are LATE for %@!", self.venue.name];
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
 
 @end

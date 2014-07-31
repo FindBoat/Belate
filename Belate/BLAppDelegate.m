@@ -10,12 +10,7 @@
 #import "BLLoginViewController.h"
 #import "BLHangoutListViewController.h"
 #import "BLUtility.h"
-#import <Parse/Parse.h>
 #import "Foursquare2.h"
-
-//#import "FSVenue.h"
-//#import "FSConverter.h"
-
 
 @implementation BLAppDelegate
 
@@ -45,29 +40,28 @@
     
     self.window.rootViewController = navigationController;
     
+//    
+//    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+//    NSDate *currentDate = [NSDate date];
+//    localNotification.fireDate = [currentDate dateByAddingTimeInterval:5];;
+//    localNotification.alertBody = [NSString stringWithFormat:@"You are LATE for %@!", @"Google"];
+//    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+//    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+//
+//    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    
+    // Handle local notification.
+    UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (notification) {
+        [self application:application handleNotification:notification];
+    }
+
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self application:application handleNotification:notification];
 }
 
 #pragma - Facebook & Foursquare related.
@@ -106,6 +100,10 @@
                                  callbackURL:@""];
 }
 
-
+- (void)application:(UIApplication *)application handleNotification:(UILocalNotification *)notification {
+    [BLUtility showErrorAlertWithTitle:@"Oh No..." andMessage:notification.alertBody];
+    application.applicationIconBadgeNumber = 0;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hangoutLate" object:self];
+}
 
 @end
