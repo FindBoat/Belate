@@ -40,7 +40,7 @@
     
     self.window.rootViewController = navigationController;
     
-//    
+
 //    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
 //    NSDate *currentDate = [NSDate date];
 //    localNotification.fireDate = [currentDate dateByAddingTimeInterval:5];;
@@ -49,7 +49,7 @@
 //    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
 //
 //    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-    
+
     // Handle local notification.
     UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (notification) {
@@ -101,9 +101,11 @@
 }
 
 - (void)application:(UIApplication *)application handleNotification:(UILocalNotification *)notification {
-    [BLUtility showErrorAlertWithTitle:@"Oh No..." andMessage:notification.alertBody];
+    [BLUtility showErrorAlertWithTitle:@"Oh No..." andMessage:[NSString stringWithFormat:@"%@\nWe're gonna post something funny on your Facebook as punishment!", notification.alertBody]];
     application.applicationIconBadgeNumber = 0;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hangoutLate" object:self];
+    
+    [BLUtility punish];
 }
 
 @end

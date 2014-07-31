@@ -186,5 +186,22 @@
     }
 }
 
++ (void)punish {
+//    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                                   @"I am unable to be on time. From BELATE (http://belate.com)", @"message",
+////                                   @"http://the-digital-reader.com/wp-content/uploads/2014/03/dropbox-logo1.png", @"source",
+//                                   nil];
+//    [FBRequestConnection startWithGraphPath:@"me/feed"
+//                                 parameters:params
+//                                 HTTPMethod:@"POST"
+//                          completionHandler:^(FBRequestConnection *connection,
+//                                              id result,
+//                                              NSError *error) {
+//                              // Do nothing.
+//                          }];
+    [BLUtility showErrorAlertWithTitle:@"Important" andMessage:@"In prod, we're gonna post on your Facebook."];
+}
+
+
 
 @end

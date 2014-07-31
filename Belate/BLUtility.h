@@ -20,4 +20,6 @@
 
 + (void)askFacebookPublishPermissionWithBlock:(void(^)(BOOL succeeded))block;
 
++ (void)punish;
+
 @end

@@ -41,7 +41,6 @@
         self.statusLabel = [UILabel new];
         self.statusLabel.textAlignment = NSTextAlignmentRight;
         self.statusLabel.font = [UIFont fontWithName:@"HelveticaNeue-bold" size:13.0];
-        self.statusLabel.textColor = [UIColor grayColor];
         self.statusLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self.contentView addSubview:self.statusLabel];
         
@@ -90,7 +89,8 @@
     }
     
     self.statusLabel.text = [self stringFromHangoutStatus:hangoutStatus];
-    self.contentView.backgroundColor = [self colorFromHangoutStatus:hangoutStatus];
+    self.statusLabel.textColor = [self statusLabelColorFromHangoutStatus:hangoutStatus];
+    self.contentView.backgroundColor = [self cellColorFromHangoutStatus:hangoutStatus];
     
     self.othersLabel.text = [NSString stringWithFormat:@"%lu people joined", avatarFiles.count];
     
@@ -245,17 +245,32 @@
     return nil;
 }
 
-- (UIColor *)colorFromHangoutStatus:(NSString *)status {
+- (UIColor *)cellColorFromHangoutStatus:(NSString *)status {
     if ([status isEqualToString:kUserHangoutStatusCreate] || [status isEqualToString:kUserHangoutStatusJoin]) {
         return [BLUtility colorWithHexString:@"FFFFFF"];
     } else if ([status isEqualToString:kUserHangoutStatusRequested]) {
         return [BLUtility colorWithHexString:@"F5ECCE"];
     } else if ([status isEqualToString:kUserHangoutStatusArrived]) {
-        return [BLUtility colorWithHexString:@"EFFBEF"];
+        return [BLUtility colorWithHexString:@"EBEBEB"];
     } else if ([status isEqualToString:kUserHangoutStatusLate]) {
-        return [BLUtility colorWithHexString:@"F2F2F2"];
+        return [BLUtility colorWithHexString:@"EBEBEB"];
     } else if ([status isEqualToString:kUserHangoutStatusReject]) {
-        return [BLUtility colorWithHexString:@"F2F2F2"];
+        return [BLUtility colorWithHexString:@"EBEBEB"];
+    }
+    return nil;
+}
+
+- (UIColor *)statusLabelColorFromHangoutStatus:(NSString *)status {
+    if ([status isEqualToString:kUserHangoutStatusCreate] || [status isEqualToString:kUserHangoutStatusJoin]) {
+        return [BLUtility colorWithHexString:@"328735"];
+    } else if ([status isEqualToString:kUserHangoutStatusRequested]) {
+        return [BLUtility colorWithHexString:@"000000"];
+    } else if ([status isEqualToString:kUserHangoutStatusArrived]) {
+        return [UIColor darkGrayColor];
+    } else if ([status isEqualToString:kUserHangoutStatusLate]) {
+        return [BLUtility colorWithHexString:@"883532"];
+    } else if ([status isEqualToString:kUserHangoutStatusReject]) {
+        return [UIColor darkGrayColor];
     }
     return nil;
 }
