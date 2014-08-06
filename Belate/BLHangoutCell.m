@@ -64,7 +64,7 @@
 }
 
 - (void)setHangout:(PFObject *)hangout {
-    self.locationNameLabel.text = hangout[kHangoutLocationNameKey];
+    self.locationNameLabel.text = hangout[kHangoutVenueKey][kVenueNameKey];
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"EEEE, MMM dd 'at' hh:mm a"];
@@ -99,8 +99,6 @@
 }
 
 - (void)applyConstraints {
-    [self.contentView removeConstraints:self.contentView.constraints];
-
     // Constraints for locationNameLabel.
     [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.locationNameLabel
 																 attribute:NSLayoutAttributeTop

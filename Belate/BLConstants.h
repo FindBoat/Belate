@@ -24,9 +24,21 @@ extern NSString *const kUserProfilePictureSmallKey;
 extern NSString *const kHangoutClassKey;
 
 extern NSString *const kHangoutTimeKey;
-extern NSString *const kHangoutLocationNameKey;
-extern NSString *const kHangoutLocationAddressKey;
+extern NSString *const kHangoutVenueKey;
 
+#pragma mark - Venue class
+extern NSString *const kVenueClassKey;
+
+extern NSString *const kVenueNameKey;
+extern NSString *const kVenueAddressKey;
+extern NSString *const kVenueCityKey;
+extern NSString *const kVenueCountryKey;
+extern NSString *const kVenueCrossStreetKey;
+extern NSString *const kVenueLatKey;
+extern NSString *const kVenueLngKey;
+extern NSString *const kVenuePostalCodeKey;
+extern NSString *const kVenueStateKey;
+extern NSString *const kVenueMainCategoryKey;
 
 #pragma mark - Friend class keys
 extern NSString *const kFriendClassKey;

@@ -11,6 +11,7 @@
 #import "BLCreateHangoutViewController.h"
 #import "BLHangoutCell.h"
 #import "BLUtility.h"
+#import "BLHangoutDetailViewController.h"
 
 @interface BLHangoutListViewController()
 
@@ -33,6 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.hidesBackButton = YES;
     self.navigationItem.title = @"Belate";
     self.navigationController.navigationBar.barTintColor = [BLUtility colorWithHexString:kMainColor];
@@ -57,7 +59,7 @@
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:kUserHangoutClassKey];
     [query whereKey:kUserHangoutUserKey equalTo:[PFUser currentUser]];
-    [query includeKey:kUserHangoutHangoutKey];
+    [query includeKey:[NSString stringWithFormat:@"%@.%@", kUserHangoutHangoutKey, kHangoutVenueKey]];
     
     // If no objects are loaded in memory, we look to the cache first to fill the table
     // and then subsequently do a query against the network.
@@ -109,13 +111,19 @@
                 [avatarFiles addObject:user[kUserProfilePictureSmallKey]];
                 
                 // Check if it's late.
-                if ([(NSDate *)hangout[kHangoutTimeKey] compare:[NSDate date]] == NSOrderedAscending &&
-                    ([userHangout[kUserHangoutStatusKey] isEqualToString:kUserHangoutStatusJoin] ||
-                     [userHangout[kUserHangoutStatusKey] isEqualToString:kUserHangoutStatusCreate])) {
+                if ([(NSDate *)hangout[kHangoutTimeKey] compare:[NSDate date]] == NSOrderedAscending) {
+                    // Set to Late if the user has joined or created.
+                    if ([userHangout[kUserHangoutStatusKey] isEqualToString:kUserHangoutStatusJoin] ||
+                        [userHangout[kUserHangoutStatusKey] isEqualToString:kUserHangoutStatusCreate]) {
                         userHangout[kUserHangoutStatusKey] = kUserHangoutStatusLate;
                         [staleUserHangouts addObject:userHangout];
+                    } else if ([userHangout[kUserHangoutStatusKey] isEqualToString:kUserHangoutStatusRequested]) {
+                        // Set to Reject if the status is requested.
+                        userHangout[kUserHangoutStatusKey] = kUserHangoutStatusReject;
+                        [staleUserHangouts addObject:userHangout];
+                    }
                 }
-                
+            
                 if ([user.objectId isEqualToString:[PFUser currentUser].objectId]) {
                     hangoutStatus = userHangout[kUserHangoutStatusKey];
                 }
@@ -133,8 +141,15 @@
         }
     }];
 
-    
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    PFObject *hangout = self.objects[indexPath.row][kUserHangoutHangoutKey];
+    
+    BLHangoutDetailViewController *hangoutDetailViewController = [[BLHangoutDetailViewController alloc] initWithHangout:hangout];
+    [self.navigationController pushViewController:hangoutDetailViewController animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

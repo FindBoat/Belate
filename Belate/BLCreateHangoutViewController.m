@@ -191,11 +191,52 @@
 
 - (void)createHangout {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    // Create venue if not exist.
+    PFQuery *venueQuery = [PFQuery queryWithClassName:kVenueClassKey];
+    [venueQuery whereKey:kVenueLatKey equalTo:@(self.venue.location.coordinate.latitude)];
+    [venueQuery whereKey:kVenueLngKey equalTo:@(self.venue.location.coordinate.longitude)];
+    venueQuery.limit = 1;
+    [venueQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            if (objects.count == 0) {
+                PFObject *venue = [PFObject objectWithClassName:kVenueClassKey];
+                venue[kVenueNameKey] = self.venue.name;
+                venue[kVenueAddressKey] = self.venue.location.address;
+                venue[kVenueCountryKey] = self.venue.location.country;
+                venue[kVenueCityKey] = self.venue.location.city;
+                venue[kVenueCrossStreetKey] = self.venue.location.crossStreet;
+                venue[kVenuePostalCodeKey] = self.venue.location.postalCode;
+                venue[kVenueStateKey] = self.venue.location.state;
+                venue[kVenueLatKey] = @(self.venue.location.coordinate.latitude);
+                venue[kVenueLngKey] = @(self.venue.location.coordinate.longitude);
+                venue[kVenueMainCategoryKey] = self.venue.mainCategory;
+                
+                [venue saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    // Create hangout with new venue.
+                    if (succeeded) {
+                        [self createHangoutWithVenue:venue andBlock:^(BOOL succeeded, NSError *error) {
+                            [hud hide:YES];
+                        }];
+                    } else {
+                        [hud hide:YES];
+                    }
+                }];
+            } else {
+                // Create hangout with existing venue.
+                [self createHangoutWithVenue:objects[0] andBlock:^(BOOL succeeded, NSError *error) {
+                    [hud hide:YES];
+                }];
+            }
+        }
+    }];
+}
 
+- (void)createHangoutWithVenue:(PFObject *)venue andBlock:(void(^)(BOOL succeeded, NSError *error))block {
     PFObject *hangout = [PFObject objectWithClassName:kHangoutClassKey];
     hangout[kHangoutTimeKey] = self.date;
-    hangout[kHangoutLocationNameKey] = self.venue.name;
-    hangout[kHangoutLocationAddressKey] = self.venue.location.address;
+    hangout[kHangoutVenueKey] = venue;
+
     [hangout saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             // Store hangout user relation.
@@ -220,7 +261,8 @@
                     [self createLocalNotification];
                     [self.delegate createHangoutViewController:self didCreateHangout:hangout];
                 }
-                [hud hide:YES];
+                
+                block(succeeded, error);
             }];
         }
     }];

@@ -10,9 +10,6 @@
 
 @interface BLFriendCell()
 
-@property (nonatomic, strong) PFImageView *avatarView;
-@property (nonatomic, strong) UILabel *nameLabel;
-
 @end
 
 @implementation BLFriendCell
@@ -20,21 +17,23 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.avatarView = [[PFImageView alloc] init];
-        self.avatarView.image = [UIImage imageNamed:@"avatar-placeholder"];
-        self.avatarView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self.contentView addSubview:self.avatarView];
-        
-        self.nameLabel = [[UILabel alloc] init];
-        self.nameLabel.font = [UIFont boldSystemFontOfSize:15.0f];
-        self.nameLabel.textColor = [UIColor blackColor];
-        self.nameLabel.backgroundColor = [UIColor whiteColor];
-        self.nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        [self.contentView addSubview:self.nameLabel];
-        
+        [self initViews];
         [self applyConstraints];
     }
     return self;
+}
+
+- (void)initViews {
+    self.avatarView = [[PFImageView alloc] init];
+    self.avatarView.image = [UIImage imageNamed:@"avatar-placeholder"];
+    self.avatarView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:self.avatarView];
+    
+    self.nameLabel = [[UILabel alloc] init];
+    self.nameLabel.font = [UIFont boldSystemFontOfSize:15.0f];
+    self.nameLabel.textColor = [UIColor blackColor];
+    self.nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:self.nameLabel];
 }
 
 - (void)setUser:(PFUser *)user {

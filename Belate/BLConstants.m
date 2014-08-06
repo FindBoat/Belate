@@ -24,8 +24,21 @@ NSString *const kUserProfilePictureSmallKey = @"profilePictureSmall";
 NSString *const kHangoutClassKey = @"Hangout";
 
 NSString *const kHangoutTimeKey = @"time";
-NSString *const kHangoutLocationNameKey = @"locationName";
-NSString *const kHangoutLocationAddressKey = @"locationAddress";
+NSString *const kHangoutVenueKey = @"venue";
+
+#pragma mark - Venue class
+NSString *const kVenueClassKey = @"Venue";
+
+NSString *const kVenueNameKey = @"name";
+NSString *const kVenueAddressKey = @"address";
+NSString *const kVenueCityKey = @"city";
+NSString *const kVenueCountryKey = @"country";
+NSString *const kVenueCrossStreetKey = @"crossStreet";
+NSString *const kVenueLatKey = @"lat";
+NSString *const kVenueLngKey = @"lng";
+NSString *const kVenuePostalCodeKey = @"postalCode";
+NSString *const kVenueStateKey = @"state";
+NSString *const kVenueMainCategoryKey = @"mainCategory";
 
 #pragma mark - Friend class keys
 NSString *const kFriendClassKey = @"Friend";

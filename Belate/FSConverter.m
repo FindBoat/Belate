@@ -23,16 +23,15 @@
         }
 
         ann.location.address = v[@"location"][@"address"];
-        if ([v[@"location"] valueForKey:@"city"]) {
-            ann.location.city = v[@"location"][@"city"];
-        }
-        if ([v[@"location"] valueForKey:@"state"]) {
-            ann.location.state = v[@"location"][@"state"];
-        }
+        ann.location.city = v[@"location"][@"city"];
+        ann.location.state = v[@"location"][@"state"];
         ann.location.distance = v[@"location"][@"distance"];
+        ann.location.country = v[@"location"][@"country"];
+        ann.location.crossStreet = v[@"location"][@"crossStreet"];
+        ann.location.postalCode = v[@"location"][@"postalCode"];
         
         [ann.location setCoordinate:CLLocationCoordinate2DMake([v[@"location"][@"lat"] doubleValue],
-                                                      [v[@"location"][@"lng"] doubleValue])];
+                                                               [v[@"location"][@"lng"] doubleValue])];
         [objects addObject:ann];
     }
     return objects;

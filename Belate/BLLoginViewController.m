@@ -22,8 +22,7 @@
 @implementation BLLoginViewController
 
 - (void)loadView {
-    self.navigationItem.title = @"Belate";
-    self.navigationController.navigationBar.barTintColor = [BLUtility colorWithHexString:kMainColor];
+    self.navigationController.navigationBar.hidden = YES;
     self.loginView = [[BLLoginView alloc] initWithFrame:CGRectZero];
     self.view = self.loginView;
     

@@ -162,6 +162,7 @@
                                                                            n:nil
                                                                            e:nil
                                                                     callback:^(BOOL success, id result) {
+                                                                        NSLog(@"%@", result);
                                                                         if (!success) {
                                                                             return;
                                                                         }

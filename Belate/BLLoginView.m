@@ -45,7 +45,7 @@
         [self addSubview:self.logoLabel];
         
         self.fbLoginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.fbLoginButton.backgroundColor = [UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:0.95];
+        self.fbLoginButton.backgroundColor = [UIColor colorWithRed:49.0/255.0 green:94.0/255.0 blue:201.0/255.0 alpha:0.85];
         [self.fbLoginButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
         [self.fbLoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.fbLoginButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -147,7 +147,7 @@
                                                     multiplier:1
                                                       constant:220.0f]];
     
-    // Constraints for fbLoginView.
+    // Constraints for fbLoginButton.
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.fbLoginButton
                                                      attribute:NSLayoutAttributeCenterX
                                                      relatedBy:NSLayoutRelationEqual

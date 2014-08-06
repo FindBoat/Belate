@@ -31,7 +31,11 @@
 		FD07310F19762CFD0077463B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD07310E19762CFD0077463B /* StoreKit.framework */; };
 		FD07311119762D030077463B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD07311019762D030077463B /* SystemConfiguration.framework */; };
 		FD07311319762F960077463B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD07311219762F960077463B /* FacebookSDK.framework */; };
+		FD1A65FB1990124A001037F1 /* BLHangoutActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1A65FA1990124A001037F1 /* BLHangoutActionView.m */; };
 		FD2226681987346B00061C83 /* BLHangoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2226671987346B00061C83 /* BLHangoutCell.m */; };
+		FD22266B198B0A6000061C83 /* BLHangoutDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD22266A198B0A6000061C83 /* BLHangoutDetailViewController.m */; };
+		FD22266E198B127A00061C83 /* BLHangoutDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD22266D198B127A00061C83 /* BLHangoutDetailHeaderView.m */; };
+		FD222672198B1C2D00061C83 /* BLHangoutAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FD222671198B1C2D00061C83 /* BLHangoutAnnotation.m */; };
 		FD4B46C51978E6BC009B60EA /* BLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4B46C41978E6BC009B60EA /* BLLoginViewController.m */; };
 		FD4B46C81978E6EC009B60EA /* BLLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4B46C71978E6EC009B60EA /* BLLoginView.m */; };
 		FD4B46CB1978EBD0009B60EA /* login.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FD4B46CA1978EBD0009B60EA /* login.jpg */; };
@@ -47,6 +51,7 @@
 		FD93B9601984502800F94F4B /* FSVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93B95F1984502800F94F4B /* FSVenue.m */; };
 		FD93B963198450EE00F94F4B /* FSConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93B962198450EE00F94F4B /* FSConverter.m */; };
 		FD93B96619846BB500F94F4B /* BLCreateHangoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93B96519846BB500F94F4B /* BLCreateHangoutViewController.m */; };
+		FDD2A11A198ED57E001433B2 /* BLFriendStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD2A119198ED57E001433B2 /* BLFriendStatusCell.m */; };
 		FDEECDCE1985796700F1D391 /* BLVenueSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEECDCD1985796700F1D391 /* BLVenueSearchViewController.m */; };
 		FDEECDD41985DB3600F1D391 /* MGCDPImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDEECDD01985DB3600F1D391 /* MGCDPImages.xcassets */; };
 		FDEECDD51985DB3600F1D391 /* MGConferenceDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEECDD21985DB3600F1D391 /* MGConferenceDatePicker.m */; };
@@ -97,8 +102,16 @@
 		FD07310E19762CFD0077463B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		FD07311019762D030077463B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		FD07311219762F960077463B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		FD1A65F91990124A001037F1 /* BLHangoutActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLHangoutActionView.h; sourceTree = "<group>"; };
+		FD1A65FA1990124A001037F1 /* BLHangoutActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLHangoutActionView.m; sourceTree = "<group>"; };
 		FD2226661987346B00061C83 /* BLHangoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLHangoutCell.h; sourceTree = "<group>"; };
 		FD2226671987346B00061C83 /* BLHangoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLHangoutCell.m; sourceTree = "<group>"; };
+		FD222669198B0A6000061C83 /* BLHangoutDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLHangoutDetailViewController.h; sourceTree = "<group>"; };
+		FD22266A198B0A6000061C83 /* BLHangoutDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLHangoutDetailViewController.m; sourceTree = "<group>"; };
+		FD22266C198B127A00061C83 /* BLHangoutDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLHangoutDetailHeaderView.h; sourceTree = "<group>"; };
+		FD22266D198B127A00061C83 /* BLHangoutDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLHangoutDetailHeaderView.m; sourceTree = "<group>"; };
+		FD222670198B1C2D00061C83 /* BLHangoutAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLHangoutAnnotation.h; sourceTree = "<group>"; };
+		FD222671198B1C2D00061C83 /* BLHangoutAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLHangoutAnnotation.m; sourceTree = "<group>"; };
 		FD4B46C31978E6BC009B60EA /* BLLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLLoginViewController.h; sourceTree = "<group>"; };
 		FD4B46C41978E6BC009B60EA /* BLLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLLoginViewController.m; sourceTree = "<group>"; };
 		FD4B46C61978E6EC009B60EA /* BLLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLLoginView.h; sourceTree = "<group>"; };
@@ -126,6 +139,8 @@
 		FD93B962198450EE00F94F4B /* FSConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSConverter.m; sourceTree = "<group>"; };
 		FD93B96419846BB500F94F4B /* BLCreateHangoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCreateHangoutViewController.h; sourceTree = "<group>"; };
 		FD93B96519846BB500F94F4B /* BLCreateHangoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCreateHangoutViewController.m; sourceTree = "<group>"; };
+		FDD2A118198ED57E001433B2 /* BLFriendStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLFriendStatusCell.h; sourceTree = "<group>"; };
+		FDD2A119198ED57E001433B2 /* BLFriendStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLFriendStatusCell.m; sourceTree = "<group>"; };
 		FDEECDCC1985796700F1D391 /* BLVenueSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLVenueSearchViewController.h; sourceTree = "<group>"; };
 		FDEECDCD1985796700F1D391 /* BLVenueSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLVenueSearchViewController.m; sourceTree = "<group>"; };
 		FDEECDD01985DB3600F1D391 /* MGCDPImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MGCDPImages.xcassets; sourceTree = "<group>"; };
@@ -228,9 +243,7 @@
 		FD0730D519762C540077463B /* Belate */ = {
 			isa = PBXGroup;
 			children = (
-				FDEECDE01986ADE000F1D391 /* avatar-placeholder.png */,
-				FDEECDE11986ADE000F1D391 /* avatar-placeholder@2x.png */,
-				FDEECDDF1986ADD700F1D391 /* Resources */,
+				FD22266F198B1BFF00061C83 /* Models */,
 				FD93B95D1984500200F94F4B /* Libs */,
 				FD4DBD2C197C9152004062AE /* Categories */,
 				FD4B46C91978EBBF009B60EA /* Resources */,
@@ -292,6 +305,15 @@
 			name = CreateHangout;
 			sourceTree = "<group>";
 		};
+		FD22266F198B1BFF00061C83 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FD222670198B1C2D00061C83 /* BLHangoutAnnotation.h */,
+				FD222671198B1C2D00061C83 /* BLHangoutAnnotation.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		FD4B46C11978E671009B60EA /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,8 +323,14 @@
 				FD6600EC1982201200C9E678 /* BLBlankHangoutListView.m */,
 				FDEECDDC1986ACEE00F1D391 /* BLFriendCell.h */,
 				FDEECDDD1986ACEE00F1D391 /* BLFriendCell.m */,
+				FDD2A118198ED57E001433B2 /* BLFriendStatusCell.h */,
+				FDD2A119198ED57E001433B2 /* BLFriendStatusCell.m */,
 				FD2226661987346B00061C83 /* BLHangoutCell.h */,
 				FD2226671987346B00061C83 /* BLHangoutCell.m */,
+				FD22266C198B127A00061C83 /* BLHangoutDetailHeaderView.h */,
+				FD22266D198B127A00061C83 /* BLHangoutDetailHeaderView.m */,
+				FD1A65F91990124A001037F1 /* BLHangoutActionView.h */,
+				FD1A65FA1990124A001037F1 /* BLHangoutActionView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -315,6 +343,8 @@
 				FD4B46C41978E6BC009B60EA /* BLLoginViewController.m */,
 				FD6600E81981EB9500C9E678 /* BLHangoutListViewController.h */,
 				FD6600E91981EB9500C9E678 /* BLHangoutListViewController.m */,
+				FD222669198B0A6000061C83 /* BLHangoutDetailViewController.h */,
+				FD22266A198B0A6000061C83 /* BLHangoutDetailViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -322,6 +352,8 @@
 		FD4B46C91978EBBF009B60EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FDEECDE01986ADE000F1D391 /* avatar-placeholder.png */,
+				FDEECDE11986ADE000F1D391 /* avatar-placeholder@2x.png */,
 				FD4B46CA1978EBD0009B60EA /* login.jpg */,
 			);
 			name = Resources;
@@ -361,13 +393,6 @@
 				FDEECDD31985DB3600F1D391 /* MGConferenceDatePickerDelegate.h */,
 			);
 			path = MGConferenceDatePicker;
-			sourceTree = "<group>";
-		};
-		FDEECDDF1986ADD700F1D391 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -505,14 +530,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD1A65FB1990124A001037F1 /* BLHangoutActionView.m in Sources */,
 				FD4DBD34197C9275004062AE /* UIImage+AlphaAdditions.m in Sources */,
 				FD6600EA1981EB9500C9E678 /* BLHangoutListViewController.m in Sources */,
 				FD2226681987346B00061C83 /* BLHangoutCell.m in Sources */,
+				FD222672198B1C2D00061C83 /* BLHangoutAnnotation.m in Sources */,
 				FD4DBD3B197CA9B6004062AE /* BLUtility.m in Sources */,
 				FD93B96619846BB500F94F4B /* BLCreateHangoutViewController.m in Sources */,
 				FD4B46C51978E6BC009B60EA /* BLLoginViewController.m in Sources */,
 				FD93B9601984502800F94F4B /* FSVenue.m in Sources */,
 				FD4DBD35197C9275004062AE /* UIImage+RoundedCornerAdditions.m in Sources */,
+				FDD2A11A198ED57E001433B2 /* BLFriendStatusCell.m in Sources */,
 				FDEECDD81985E8D000F1D391 /* BLDatePickerViewController.m in Sources */,
 				FD4DBD38197C9F67004062AE /* BLConstants.m in Sources */,
 				FDEECDCE1985796700F1D391 /* BLVenueSearchViewController.m in Sources */,
@@ -524,7 +552,9 @@
 				FD4DBD2F197C9172004062AE /* UIImage+ResizeAdditions.m in Sources */,
 				FD0730DC19762C540077463B /* main.m in Sources */,
 				FD6600ED1982201200C9E678 /* BLBlankHangoutListView.m in Sources */,
+				FD22266E198B127A00061C83 /* BLHangoutDetailHeaderView.m in Sources */,
 				FD93B963198450EE00F94F4B /* FSConverter.m in Sources */,
+				FD22266B198B0A6000061C83 /* BLHangoutDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

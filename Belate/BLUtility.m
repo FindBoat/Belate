@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "BlockAlertView.h"
 
+#define DEG2RAD(x) ((x) * 3.1415926/180.0)
 
 @implementation BLUtility
 
@@ -200,6 +201,17 @@
 //                              // Do nothing.
 //                          }];
     [BLUtility showErrorAlertWithTitle:@"Important" andMessage:@"In prod, we're gonna post on your Facebook."];
+}
+
++ (float)distanceBetweenPoint:(CLLocationCoordinate2D)point1 andPoint:(CLLocationCoordinate2D)point2 {
+    // For mile.
+    float r = 3961;
+    float dLng = DEG2RAD(point2.longitude - point1.longitude);
+    float dLat = DEG2RAD(point2.latitude - point1.latitude);
+    
+    float a = sin(dLat / 2) * sin(dLat / 2) + cos(DEG2RAD(point1.latitude)) * cos(DEG2RAD(point2.latitude)) * sin(dLng / 2) * sin(dLng / 2);
+    float c = 2 * atan2(sqrt(a), sqrt(1 - a));
+    return r * c;
 }
 
 

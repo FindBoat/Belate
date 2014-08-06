@@ -10,7 +10,13 @@
 
 @property (nonatomic, strong) PFUser *user;
 
-+ (CGFloat)cellHight;
+@property (nonatomic, strong) PFImageView *avatarView;
+@property (nonatomic, strong) UILabel *nameLabel;
 
+
+- (void)initViews;
+- (void)applyConstraints;
+
++ (CGFloat)cellHight;
 
 @end
