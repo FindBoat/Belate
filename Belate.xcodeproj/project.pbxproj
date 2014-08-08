@@ -251,12 +251,12 @@
 				FD4B46C11978E671009B60EA /* Views */,
 				FD0730DE19762C540077463B /* BLAppDelegate.h */,
 				FD0730DF19762C540077463B /* BLAppDelegate.m */,
-				FD0730E119762C540077463B /* Images.xcassets */,
-				FD0730D619762C540077463B /* Supporting Files */,
 				FD4DBD36197C9F67004062AE /* BLConstants.h */,
 				FD4DBD37197C9F67004062AE /* BLConstants.m */,
 				FD4DBD39197CA9B6004062AE /* BLUtility.h */,
 				FD4DBD3A197CA9B6004062AE /* BLUtility.m */,
+				FD0730E119762C540077463B /* Images.xcassets */,
+				FD0730D619762C540077463B /* Supporting Files */,
 			);
 			path = Belate;
 			sourceTree = "<group>";

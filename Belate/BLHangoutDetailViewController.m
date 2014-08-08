@@ -10,9 +10,11 @@
 #import "BLUtility.h"
 #import "BLFriendStatusCell.h"
 #import "BLHangoutDetailHeaderView.h"
+#import "MBProgressHUD.h"
 
 @interface BLHangoutDetailViewController ()
 
+@property (nonatomic, strong) PFObject *userHangout;
 @property (nonatomic, strong) PFObject *hangout;
 @property (nonatomic, strong) BLHangoutDetailHeaderView *headerView;
 
@@ -20,7 +22,7 @@
 
 @implementation BLHangoutDetailViewController
 
-- (id)initWithHangout:(PFObject *)hangout {
+- (id)initWithUserHangout:(PFObject *)userHangout {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
         self.parseClassName = kUserHangoutUserKey;
@@ -28,7 +30,9 @@
         self.pullToRefreshEnabled = YES;
         self.paginationEnabled = YES;
         
-        _hangout = hangout;
+        _userHangout = userHangout;
+        _hangout = self.userHangout[kUserHangoutHangoutKey];
+        [_hangout fetchIfNeeded];
     }
     return self;
 }
@@ -45,35 +49,14 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     // Get hangout status and creator.
-    // TODO: It's quite inefficient here, we need to fix this.
-    PFQuery *query = [PFQuery queryWithClassName:kUserHangoutClassKey];
-    [query whereKey:kUserHangoutHangoutKey equalTo:self.hangout];
-    [query includeKey:kUserHangoutUserKey];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            PFUser *creator;
-            NSString *status;
-            for (PFObject *userHangout in objects) {
-                PFUser *user = userHangout[kUserHangoutUserKey];
-                if ([user.objectId isEqualToString:[PFUser currentUser].objectId]) {
-                    status = userHangout[kUserHangoutStatusKey];
-                }
-                if ([userHangout[kUserHangoutStatusKey] isEqualToString:kUserHangoutStatusCreate]) {
-                    creator = user;
-                }
-            }
-            
-            self.headerView = [[BLHangoutDetailHeaderView alloc]
-                               initWithFrame:[BLHangoutDetailHeaderView rectForViewBasedOnStatus:status]
-                                                                        andHangout:self.hangout
-                                                                        andCreator:creator
-                                                                        andStatus:status];
-            self.headerView.delegate = self;
-            self.headerView.mapView.delegate = self;
-            self.tableView.tableHeaderView = self.headerView;
-
-        }
-    }];
+    self.headerView = [[BLHangoutDetailHeaderView alloc]
+                       initWithFrame:[BLHangoutDetailHeaderView rectForViewBasedOnStatus:self.userHangout[kUserHangoutStatusKey]]
+                       andHangout:self.hangout
+                       andCreator:self.hangout[kHangoutCreatorKey]
+                       andStatus:self.userHangout[kUserHangoutStatusKey]];
+    self.headerView.delegate = self;
+    self.headerView.mapView.delegate = self;
+    self.tableView.tableHeaderView = self.headerView;
 }
 
 # pragma - MKMapViewDelegate
@@ -136,11 +119,21 @@
 }
 
 - (void)hangoutDetailHeaderView:(id)headerView didTapAcceptButton:(UIButton *)button {
-    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.userHangout[kUserHangoutStatusKey] = kUserHangoutStatusJoin;
+    [self.userHangout saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            [self viewDidLoad];
+            [self viewWillAppear:YES];
+//            [self.tableView.tableHeaderView performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:YES];
+        }
+        [hud hide:YES];
+    }];
 }
 
 - (void)hangoutDetailHeaderView:(id)headerView didTapRejectButton:(UIButton *)button {
-    
+    self.userHangout[kUserHangoutStatusKey] = kUserHangoutStatusReject;
+    [self.userHangout saveInBackground];
 }
 
 - (void)hangoutDetailHeaderView:(id)headerView didTapCheckInButton:(UIButton *)button {

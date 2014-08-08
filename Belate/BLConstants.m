@@ -23,6 +23,7 @@ NSString *const kUserProfilePictureSmallKey = @"profilePictureSmall";
 #pragma mark - Hangout class
 NSString *const kHangoutClassKey = @"Hangout";
 
+NSString *const kHangoutCreatorKey = @"creator";
 NSString *const kHangoutTimeKey = @"time";
 NSString *const kHangoutVenueKey = @"venue";
 

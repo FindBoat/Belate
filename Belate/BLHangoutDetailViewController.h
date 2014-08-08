@@ -11,6 +11,6 @@
 
 @interface BLHangoutDetailViewController : PFQueryTableViewController <BLHangoutDetailHeaderViewDelegate, MKMapViewDelegate>
 
-- (id)initWithHangout:(PFObject *)hangout;
+- (id)initWithUserHangout:(PFObject *)userHangout;
 
 @end

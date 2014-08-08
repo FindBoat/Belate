@@ -46,7 +46,7 @@
 //    localNotification.fireDate = [currentDate dateByAddingTimeInterval:5];;
 //    localNotification.alertBody = [NSString stringWithFormat:@"You are LATE for %@!", @"Google"];
 //    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-//    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+//    //localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
 //
 //    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 
@@ -59,8 +59,7 @@
     return YES;
 }
 
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
-{
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     [self application:application handleNotification:notification];
 }
 
@@ -101,11 +100,7 @@
 }
 
 - (void)application:(UIApplication *)application handleNotification:(UILocalNotification *)notification {
-    [BLUtility showErrorAlertWithTitle:@"Oh No..." andMessage:[NSString stringWithFormat:@"%@\nWe're gonna post something funny on your Facebook as punishment!", notification.alertBody]];
-    application.applicationIconBadgeNumber = 0;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"hangoutLate" object:self];
-    
-    [BLUtility punish];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hangoutListNeedReload" object:self];
 }
 
 @end

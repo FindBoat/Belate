@@ -23,6 +23,7 @@ extern NSString *const kUserProfilePictureSmallKey;
 #pragma mark - Hangout class
 extern NSString *const kHangoutClassKey;
 
+extern NSString *const kHangoutCreatorKey;
 extern NSString *const kHangoutTimeKey;
 extern NSString *const kHangoutVenueKey;
 

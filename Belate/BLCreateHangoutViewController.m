@@ -234,6 +234,7 @@
 
 - (void)createHangoutWithVenue:(PFObject *)venue andBlock:(void(^)(BOOL succeeded, NSError *error))block {
     PFObject *hangout = [PFObject objectWithClassName:kHangoutClassKey];
+    hangout[kHangoutCreatorKey] = [PFUser currentUser];
     hangout[kHangoutTimeKey] = self.date;
     hangout[kHangoutVenueKey] = venue;
 
@@ -259,7 +260,7 @@
             [PFObject saveAllInBackground:relations block:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
                     [self createLocalNotification];
-                    [self.delegate createHangoutViewController:self didCreateHangout:hangout];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"hangoutListNeedReload" object:self];
                 }
                 
                 block(succeeded, error);
@@ -273,7 +274,7 @@
     localNotification.fireDate = self.date;
     localNotification.alertBody = [NSString stringWithFormat:@"You are LATE for %@!", self.venue.name];
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+//    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
     
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }

@@ -21,6 +21,10 @@
 
 @implementation BLHangoutListViewController
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"hangoutListNeedReload" object:nil];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
@@ -52,7 +56,7 @@
     [self.blankView.createButton addTarget:self action:@selector(createButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     // Add observer.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userHangoutLate:) name:@"hangoutLate" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hangoutListNeedReload:) name:@"hangoutListNeedReload" object:nil];
 }
 
 #pragma mark - PFQueryTableViewController
@@ -60,13 +64,6 @@
     PFQuery *query = [PFQuery queryWithClassName:kUserHangoutClassKey];
     [query whereKey:kUserHangoutUserKey equalTo:[PFUser currentUser]];
     [query includeKey:[NSString stringWithFormat:@"%@.%@", kUserHangoutHangoutKey, kHangoutVenueKey]];
-    
-    // If no objects are loaded in memory, we look to the cache first to fill the table
-    // and then subsequently do a query against the network.
-//    if (self.objects.count == 0) {
-//        query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-//    }
-    
     [query orderByAscending:kUserHangoutStatusKey];
     return query;
 }
@@ -117,6 +114,10 @@
                         [userHangout[kUserHangoutStatusKey] isEqualToString:kUserHangoutStatusCreate]) {
                         userHangout[kUserHangoutStatusKey] = kUserHangoutStatusLate;
                         [staleUserHangouts addObject:userHangout];
+                        
+                        // Punish.
+                        [BLUtility showErrorAlertWithTitle:@"Oh No..." andMessage:[NSString stringWithFormat:@"You're LATE for %@.\nWe're gonna post something funny on your Facebook as punishment!", hangout[kHangoutVenueKey][kVenueNameKey]]];
+                        [BLUtility punish];
                     } else if ([userHangout[kUserHangoutStatusKey] isEqualToString:kUserHangoutStatusRequested]) {
                         // Set to Reject if the status is requested.
                         userHangout[kUserHangoutStatusKey] = kUserHangoutStatusReject;
@@ -146,9 +147,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    PFObject *hangout = self.objects[indexPath.row][kUserHangoutHangoutKey];
-    
-    BLHangoutDetailViewController *hangoutDetailViewController = [[BLHangoutDetailViewController alloc] initWithHangout:hangout];
+
+    BLHangoutDetailViewController *hangoutDetailViewController = [[BLHangoutDetailViewController alloc] initWithUserHangout:self.objects[indexPath.row]];
     [self.navigationController pushViewController:hangoutDetailViewController animated:YES];
 }
 
@@ -156,21 +156,15 @@
     return [BLHangoutCell cellHight];
 }
 
-#pragma mark - BLCreateHangoutViewControllerDelegate
-- (void)createHangoutViewController:(id)controller didCreateHangout:(PFObject *)hangout {
-    [self loadObjects];
-}
-
 #pragma mark - ()
 - (void)createButtonAction:(id)sender {
     BLCreateHangoutViewController *createHangoutViewController = [BLCreateHangoutViewController new];
-    createHangoutViewController.delegate = self;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:createHangoutViewController];
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
-- (void)userHangoutLate:(NSNotification *)note {
-    [self.tableView reloadData];
+- (void)hangoutListNeedReload:(NSNotification *)note {
+    [self loadObjects];
 }
 
 
