@@ -68,4 +68,12 @@ extern NSString *const kUserHangoutStatusReject;
 extern NSString *const kUserHangoutStatusArrived;
 extern NSString *const kUserHangoutStatusLate;
 
+
+#pragma Notification
+extern NSString *const kHangoutListRefreshNotification;
+
+
+#pragma Else
+extern float const kMinCheckInDistance;
+
 @end

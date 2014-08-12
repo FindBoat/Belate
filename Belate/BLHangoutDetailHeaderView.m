@@ -95,7 +95,6 @@
     [self addSubview:self.dateLabel];
     
     [self initMapView];
-    
 }
 
 - (void)initMapView {

@@ -214,6 +214,14 @@
     return r * c;
 }
 
-
++ (void)createLocalNotificationWithDate:(NSDate *)date andVenue:(PFObject *)venue {
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.fireDate = date;
+    localNotification.alertBody = [NSString stringWithFormat:@"You are LATE for %@!", venue[kVenueNameKey]];
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    //    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
 
 @end

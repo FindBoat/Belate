@@ -24,4 +24,6 @@
 
 + (float)distanceBetweenPoint:(CLLocationCoordinate2D)point1 andPoint:(CLLocationCoordinate2D)point2;
 
++ (void)createLocalNotificationWithDate:(NSDate *)date andVenue:(PFObject *)venue;
+
 @end

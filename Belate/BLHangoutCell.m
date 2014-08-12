@@ -264,7 +264,7 @@
     } else if ([status isEqualToString:kUserHangoutStatusRequested]) {
         return [BLUtility colorWithHexString:@"000000"];
     } else if ([status isEqualToString:kUserHangoutStatusArrived]) {
-        return [UIColor darkGrayColor];
+        return [BLUtility colorWithHexString:@"328735"];
     } else if ([status isEqualToString:kUserHangoutStatusLate]) {
         return [BLUtility colorWithHexString:@"883532"];
     } else if ([status isEqualToString:kUserHangoutStatusReject]) {

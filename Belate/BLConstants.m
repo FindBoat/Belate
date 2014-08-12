@@ -67,4 +67,13 @@ NSString *const kUserHangoutStatusReject = @"5_reject";
 NSString *const kUserHangoutStatusArrived = @"3_arrived";
 NSString *const kUserHangoutStatusLate = @"4_late";
 
+
+#pragma Notification
+NSString *const kHangoutListRefreshNotification = @"HangoutListRefreshNotification";
+
+
+#pragma Else
+float const kMinCheckInDistance = 1;
+
+
 @end

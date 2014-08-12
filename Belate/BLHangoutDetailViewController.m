@@ -32,6 +32,7 @@
         
         _userHangout = userHangout;
         _hangout = self.userHangout[kUserHangoutHangoutKey];
+        // This is just a sanity check.
         [_hangout fetchIfNeeded];
     }
     return self;
@@ -49,14 +50,18 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     // Get hangout status and creator.
-    self.headerView = [[BLHangoutDetailHeaderView alloc]
-                       initWithFrame:[BLHangoutDetailHeaderView rectForViewBasedOnStatus:self.userHangout[kUserHangoutStatusKey]]
-                       andHangout:self.hangout
-                       andCreator:self.hangout[kHangoutCreatorKey]
-                       andStatus:self.userHangout[kUserHangoutStatusKey]];
-    self.headerView.delegate = self;
-    self.headerView.mapView.delegate = self;
-    self.tableView.tableHeaderView = self.headerView;
+    [self.hangout[kHangoutCreatorKey] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            self.headerView = [[BLHangoutDetailHeaderView alloc]
+                               initWithFrame:[BLHangoutDetailHeaderView rectForViewBasedOnStatus:self.userHangout[kUserHangoutStatusKey]]
+                               andHangout:self.hangout
+                               andCreator:(PFUser *)object
+                               andStatus:self.userHangout[kUserHangoutStatusKey]];
+            self.headerView.delegate = self;
+            self.headerView.mapView.delegate = self;
+            self.tableView.tableHeaderView = self.headerView;
+        }
+    }];
 }
 
 # pragma - MKMapViewDelegate
@@ -119,25 +124,28 @@
 }
 
 - (void)hangoutDetailHeaderView:(id)headerView didTapAcceptButton:(UIButton *)button {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    self.userHangout[kUserHangoutStatusKey] = kUserHangoutStatusJoin;
-    [self.userHangout saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            [self viewDidLoad];
-            [self viewWillAppear:YES];
-//            [self.tableView.tableHeaderView performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:YES];
-        }
-        [hud hide:YES];
-    }];
+    [self updateHangoutStatus:kUserHangoutStatusJoin];
 }
 
 - (void)hangoutDetailHeaderView:(id)headerView didTapRejectButton:(UIButton *)button {
-    self.userHangout[kUserHangoutStatusKey] = kUserHangoutStatusReject;
-    [self.userHangout saveInBackground];
+    [self updateHangoutStatus:kUserHangoutStatusReject];
 }
 
 - (void)hangoutDetailHeaderView:(id)headerView didTapCheckInButton:(UIButton *)button {
-    
+    [self updateHangoutStatus:kUserHangoutStatusArrived];
+}
+
+- (void)updateHangoutStatus:(NSString *)hangoutStatus {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.userHangout[kUserHangoutStatusKey] = hangoutStatus;
+    [self.userHangout saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            // Force refresh views.
+            [self viewDidLoad];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kHangoutListRefreshNotification object:self];
+        }
+        [hud hide:YES];
+    }];
 }
 
 

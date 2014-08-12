@@ -22,7 +22,7 @@
 @implementation BLHangoutListViewController
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"hangoutListNeedReload" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kHangoutListRefreshNotification object:nil];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -56,7 +56,7 @@
     [self.blankView.createButton addTarget:self action:@selector(createButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     // Add observer.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hangoutListNeedReload:) name:@"hangoutListNeedReload" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hangoutListNeedReload:) name:kHangoutListRefreshNotification object:nil];
 }
 
 #pragma mark - PFQueryTableViewController

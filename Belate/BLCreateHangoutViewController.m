@@ -259,24 +259,14 @@
             
             [PFObject saveAllInBackground:relations block:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
-                    [self createLocalNotification];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"hangoutListNeedReload" object:self];
+                    [BLUtility createLocalNotificationWithDate:self.date andVenue:venue];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kHangoutListRefreshNotification object:self];
                 }
                 
                 block(succeeded, error);
             }];
         }
     }];
-}
-
-- (void)createLocalNotification {
-    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    localNotification.fireDate = self.date;
-    localNotification.alertBody = [NSString stringWithFormat:@"You are LATE for %@!", self.venue.name];
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-//    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-    
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
 
 @end

@@ -49,6 +49,7 @@
 //    //localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
 //
 //    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    application.applicationIconBadgeNumber = 0;
 
     // Handle local notification.
     UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
@@ -100,7 +101,7 @@
 }
 
 - (void)application:(UIApplication *)application handleNotification:(UILocalNotification *)notification {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"hangoutListNeedReload" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kHangoutListRefreshNotification object:self];
 }
 
 @end
