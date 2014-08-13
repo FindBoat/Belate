@@ -125,6 +125,9 @@
 
 - (void)hangoutDetailHeaderView:(id)headerView didTapAcceptButton:(UIButton *)button {
     [self updateHangoutStatus:kUserHangoutStatusJoin];
+    
+    // Schedule local notification.
+    [BLUtility createLocalNotificationWithDate:self.hangout[kHangoutTimeKey] andVenue:self.hangout[kHangoutVenueKey]];
 }
 
 - (void)hangoutDetailHeaderView:(id)headerView didTapRejectButton:(UIButton *)button {

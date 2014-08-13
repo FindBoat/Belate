@@ -89,11 +89,12 @@
         cell = [[BLHangoutCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                     reuseIdentifier:cellIdentifier];
     }
-    
-    // Configure the cell to show todo item with a priority at the bottom
+
+    // Get the hangout object.
     PFObject *hangout = object[kUserHangoutHangoutKey];
     [cell setHangout:hangout];
 
+    // Get relevant users (we need to display their avatars).
     PFQuery *query = [PFQuery queryWithClassName:kUserHangoutClassKey];
     [query whereKey:kUserHangoutHangoutKey equalTo:hangout];
     [query includeKey:kUserHangoutUserKey];
@@ -107,20 +108,31 @@
                 PFUser *user = userHangout[kUserHangoutUserKey];
                 [avatarFiles addObject:user[kUserProfilePictureSmallKey]];
                 
-                // Check if it's late.
+                // Check if it's late or requested.
                 if ([(NSDate *)hangout[kHangoutTimeKey] compare:[NSDate date]] == NSOrderedAscending) {
                     // Set to Late if the user has joined or created.
                     if ([userHangout[kUserHangoutStatusKey] isEqualToString:kUserHangoutStatusJoin] ||
                         [userHangout[kUserHangoutStatusKey] isEqualToString:kUserHangoutStatusCreate]) {
                         userHangout[kUserHangoutStatusKey] = kUserHangoutStatusLate;
-                        [staleUserHangouts addObject:userHangout];
                         
-                        // Punish.
-                        [BLUtility showErrorAlertWithTitle:@"Oh No..." andMessage:[NSString stringWithFormat:@"You're LATE for %@.\nWe're gonna post something funny on your Facebook as punishment!", hangout[kHangoutVenueKey][kVenueNameKey]]];
-                        [BLUtility punish];
+                        // If current user is late and not punished, punished.
+                        if ([user.objectId isEqualToString:[PFUser currentUser].objectId] &&
+                            !userHangout[kUserHangoutPunished]) {
+                            [BLUtility punishWithHangout:hangout];
+                            userHangout[kUserHangoutPunished] = @YES;
+                        }
+                        
+                        [staleUserHangouts addObject:userHangout];
                     } else if ([userHangout[kUserHangoutStatusKey] isEqualToString:kUserHangoutStatusRequested]) {
                         // Set to Reject if the status is requested.
                         userHangout[kUserHangoutStatusKey] = kUserHangoutStatusReject;
+                        [staleUserHangouts addObject:userHangout];
+                    } else if ([userHangout[kUserHangoutStatusKey] isEqualToString:kUserHangoutStatusLate] &&
+                               [user.objectId isEqualToString:[PFUser currentUser].objectId] &&
+                               !userHangout[kUserHangoutPunished]) {
+                        // Punish if it's already late and not punished.
+                        [BLUtility punishWithHangout:hangout];
+                        userHangout[kUserHangoutPunished] = @YES;
                         [staleUserHangouts addObject:userHangout];
                     }
                 }

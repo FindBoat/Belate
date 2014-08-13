@@ -187,7 +187,9 @@
     }
 }
 
-+ (void)punish {
++ (void)punishWithHangout:(PFObject *)hangout {
+    [BLUtility showErrorAlertWithTitle:@"Oh No..." andMessage:[NSString stringWithFormat:@"You're LATE for %@.\nWe're gonna post something funny on your Facebook as punishment!", hangout[kHangoutVenueKey][kVenueNameKey]]];
+    
 //    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 //                                   @"I am unable to be on time. From BELATE (http://belate.com)", @"message",
 ////                                   @"http://the-digital-reader.com/wp-content/uploads/2014/03/dropbox-logo1.png", @"source",
@@ -222,6 +224,15 @@
     //    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
     
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
+
++ (NSDateFormatter *)blDateFormatter {
+    static NSDateFormatter *formatter;
+    if (!formatter) {
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"EEEE, MMM dd 'at' hh:mm a"];
+    }
+    return formatter;
 }
 
 @end

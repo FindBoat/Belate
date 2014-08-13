@@ -65,10 +65,7 @@
 
 - (void)setHangout:(PFObject *)hangout {
     self.locationNameLabel.text = hangout[kHangoutVenueKey][kVenueNameKey];
-
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"EEEE, MMM dd 'at' hh:mm a"];
-    self.dateLabel.text = [formatter stringFromDate:hangout[kHangoutTimeKey]];
+    self.dateLabel.text = [[BLUtility blDateFormatter] stringFromDate:hangout[kHangoutTimeKey]];
 }
 
 - (void)setParticipantsAvatarFiles:(NSArray *)avatarFiles andStatus:(NSString *)hangoutStatus {

@@ -88,9 +88,7 @@
     self.dateLabel = [UILabel new];
     self.dateLabel.textAlignment = NSTextAlignmentLeft;
     self.dateLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14.0];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"EEEE, MMM dd 'at' hh:mm a"];
-    self.dateLabel.text = [formatter stringFromDate:self.hangout[kHangoutTimeKey]];
+    self.dateLabel.text = [[BLUtility blDateFormatter] stringFromDate:self.hangout[kHangoutTimeKey]];
     self.dateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.dateLabel];
     

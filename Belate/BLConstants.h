@@ -59,6 +59,7 @@ extern NSString *const kUserHangoutClassKey;
 extern NSString *const kUserHangoutUserKey;
 extern NSString *const kUserHangoutHangoutKey;
 extern NSString *const kUserHangoutStatusKey;
+extern NSString *const kUserHangoutPunished;
 
 #pragma mark - User Hangout relation value
 extern NSString *const kUserHangoutStatusCreate;

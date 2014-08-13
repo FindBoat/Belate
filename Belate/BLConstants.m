@@ -58,6 +58,7 @@ NSString *const kUserHangoutClassKey = @"UserHangout";
 NSString *const kUserHangoutUserKey = @"user";
 NSString *const kUserHangoutHangoutKey = @"hangout";
 NSString *const kUserHangoutStatusKey = @"status";
+NSString *const kUserHangoutPunished = @"punished";
 
 #pragma mark - User Hangout relation value
 NSString *const kUserHangoutStatusCreate = @"1_create";

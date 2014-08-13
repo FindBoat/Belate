@@ -81,9 +81,7 @@
         }
     } else if (indexPath.section == 1) {
         if (self.date) {
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"EEEE, MMM dd 'at' hh:mm a"];
-            cell.textLabel.text = [formatter stringFromDate:self.date];
+            cell.textLabel.text = [[BLUtility blDateFormatter] stringFromDate:self.date];
         } else {
             cell.textLabel.text = @"When shall you meet";
         }
